@@ -361,7 +361,7 @@
 <li><code>alg</code>: The solver algorithm. Defult is <code>:DP5</code>. Note that any keyword argument available in the external solvers are accessible via keyword arguemnts. For example, for the ODEInterface.jl algorithms, one can specify <code>SSBETA=0.03</code> as a keyword argument and it will do as it states in the ODEInterface.jl documentation. Common options such as <code>MAXSS</code> (max stepsize) are aliased to one can use the DifferentialEquations.jl syntax <code>Δtmax</code> or <code>MAXSS</code>. The possibilities for the solvers are:</li>
 </ul>
 <p>For a full list of algorithms, please see the solver documentation.</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/68935fe6dce2c442d6439ee454bd209f293d1148/src/ode/ode_solve.jl#L1-L36' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/81d4d4052d4d7df32c7f37a097364fdb8509f7e1/src/ode/ode_solve.jl#L1-L36' class='documenter-source'>source</a><br></p>
 <p><a id='Recommended-Methods-1'></a></p>
 <h2 id="recommended-methods">Recommended Methods</h2>
 <p><a id='Non-Stiff-Problems-1'></a></p>
@@ -443,6 +443,7 @@
 <p><a id='List-of-Supplied-Tableaus-1'></a></p>
 <h2 id="list-of-supplied-tableaus">List of Supplied Tableaus</h2>
 <p>A large variety of tableaus have been supplied by default. For the most useful and common algorithms, a hand-optimized version is supplied and is recommended for general uses (i.e. use <code>:DP5</code> instead of <code>:ExplicitRK</code> with <code>tableau=constructDormandPrince()</code>). However, these serve as a good method for comparing between tableaus and understanding the pros/cons of the methods. Implemented are every published tableau (that I know exist). Note that user-defined tableaus also are accepted. To see how to define a tableau, checkout the <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/blob/master/src/ode/ode_tableaus.jl">premade tableau source code</a>. Tableau docstrings should have appropriate citations (if not, file an issue).</p>
+<p>[Note: I hope to in the near future implement plot recipes which will plot the stability regions for a given tableau, and calculate the coefficient of the highest order truncation error term.]</p>
 <ul>
 <li><code>constructHuen</code> Huen's order 2 method.</li>
 <li><code>constructRalston()</code> - Ralston's order 2 method.</li>
