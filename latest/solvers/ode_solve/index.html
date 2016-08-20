@@ -120,7 +120,13 @@
             
                 <li class="toctree-l3"><a href="#ordinary-differential-equation-solvers">Ordinary Differential Equation Solvers</a></li>
                 
-                    <li><a class="toctree-l4" href="#pros-and-cons-of-different-methods">Pros and Cons of Different Methods</a></li>
+                    <li><a class="toctree-l4" href="#recommended-methods">Recommended Methods</a></li>
+                
+                    <li><a class="toctree-l4" href="#full-list-of-methods">Full List of Methods</a></li>
+                
+                    <li><a class="toctree-l4" href="#list-of-supplied-tableaus">List of Supplied Tableaus</a></li>
+                
+                    <li><a class="toctree-l4" href="#analysis-of-methods">Analysis of Methods</a></li>
                 
             
             </ul>
@@ -277,6 +283,13 @@
     </li>
 
         
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/notes_on_algorithms/">Notes on Algorithms</a>
+        
+    </li>
+
+        
     </ul>
 <li>
           
@@ -333,7 +346,8 @@
 <li><code>timeseries_steps</code>: Denotes how many steps between saving a value for the timeseries. Defaults to 1.</li>
 <li><code>tableau</code>: The tableau for an <code>:ExplicitRK</code> algorithm. Defaults to a Dormand-Prince 4/5 method.</li>
 <li><code>adaptive</code> - Turns on adaptive timestepping for appropriate methods. Default is true.</li>
-<li><code>γ</code> - The risk-factor γ in the q equation for adaptive timestepping. Default is 2.</li>
+<li><code>γ</code> - The risk-factor γ in the q equation for adaptive timestepping. Default is .9.</li>
+<li><code>timechoicealg</code> - Chooses the method which is used for making the adaptive timestep choices. Default is <code>:Lund</code> for Lund stabilization (PI stepsize control). The other option is <code>:Simple</code> for the standard simple error-based rejection control.</li>
 <li><code>qmax</code> - Defines the maximum value possible for the adaptive q. Default is 10.</li>
 <li><code>ablstol</code> - Absolute tolerance in adaptive timestepping. Defaults to 1e-3.</li>
 <li><code>reltol</code> - Relative tolerance in adaptive timestepping. Defaults to 1e-6.</li>
@@ -344,8 +358,22 @@
 <li><code>internalnorm</code> - The norm for which error estimates are calculated. Default is 2.</li>
 <li><code>progressbar</code> - Turns on/off the Juno progressbar. Defualt is false.</li>
 <li><code>progress_steps</code> - Numbers of steps between updates of the progress bar. Default is 1000.</li>
-<li>
-<p><code>alg</code>: String which defines the solver algorithm. Defult is <code>:ExplicitRK</code>. Note that any keyword argument available in the external solvers are accessible via keyword arguemnts. For example, for the ODEInterface.jl algorithms, one can specify <code>SSBETA=0.03</code> as a keyword argument and it will do as it states in the ODEInterface.jl documentation. Common options such as <code>MAXSS</code> (max stepsize) are aliased to one can use the DifferentialEquations.jl syntax <code>Δtmax</code> or <code>MAXSS</code>. The possibilities for the solvers are:</p>
+<li><code>alg</code>: The solver algorithm. Defult is <code>:DP5</code>. Note that any keyword argument available in the external solvers are accessible via keyword arguemnts. For example, for the ODEInterface.jl algorithms, one can specify <code>SSBETA=0.03</code> as a keyword argument and it will do as it states in the ODEInterface.jl documentation. Common options such as <code>MAXSS</code> (max stepsize) are aliased to one can use the DifferentialEquations.jl syntax <code>Δtmax</code> or <code>MAXSS</code>. The possibilities for the solvers are:</li>
+</ul>
+<p>For a full list of algorithms, please see the solver documentation.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/68935fe6dce2c442d6439ee454bd209f293d1148/src/ode/ode_solve.jl#L1-L36' class='documenter-source'>source</a><br></p>
+<p><a id='Recommended-Methods-1'></a></p>
+<h2 id="recommended-methods">Recommended Methods</h2>
+<p><a id='Non-Stiff-Problems-1'></a></p>
+<h3 id="non-stiff-problems">Non-Stiff Problems</h3>
+<p>For non-stiff problems, the native DifferentialEquations.jl algorithms are vastly more efficient than the other choices (ODEInterface and ODE.jl). For most non-stiff problems, we recommend <code>:DP5</code> (this is the default algorithm). When more robust error control is required, <code>:BS5</code> is a good choice. For fast solving at lower tolerances, we recommend <code>:BS3</code>. For tolerances which are at about the truncation error of Float64 (1e-16), we recommend <code>:DP8</code> as a robust choice and <code>:Vern9</code> as an efficient choice.</p>
+<p>For high accuracy non-stiff solving, we recommend the <code>:Feagin12</code> or <code>:Feagin14</code> methods. These are more robust than Adams-Bashforth methods to discontinuities and achieve very high precision, and are much more efficient than the extrapolation methods.</p>
+<p><a id='Stiff-Problems-1'></a></p>
+<h3 id="stiff-problems">Stiff Problems</h3>
+<p>For mildly stiff problems, <code>:Rosenbrock32</code> is a good choice. As a native DifferentialEquations.jl solver, all Julia-defined numbers will work. This method uses ForwardDiff to automatically guess the Jacobian. For faster solving when the Jacobian is known, use <code>radau</code>. For highly stiff problems where Julia-defined numbers need to be used (SIUnits, Arbs), <code>:Trapezoid</code> is the current best choice. However, for the most efficient non-stiff solver, use <code>:radau</code>.</p>
+<p>(In the near future, LSODE and CVODE will be wrapped and will be other good choices for stiff solvers. Also native BDF and NDF methods methods with switching to ABM are being developed.)</p>
+<p><a id='Full-List-of-Methods-1'></a></p>
+<h2 id="full-list-of-methods">Full List of Methods</h2>
 <ul>
 <li>
 <p>DifferentialEquations.jl</p>
@@ -353,28 +381,38 @@
 <li><code>:Euler</code>- The canonical forward Euler method.</li>
 <li><code>:Midpoint</code> - The second order midpoint method.</li>
 <li><code>:RK4</code> - The canonical Runge-Kutta Order 4 method.</li>
+<li><code>:BS3</code> - Bogacki-Shampine 2/3 method.</li>
+<li><code>:DP5</code> - Dormand-Prince's 4/5 Runge-Kutta method.</li>
+<li><code>Tsit5</code> - Tsitouras 4/5 Runge-Kutta method.</li>
+<li><code>BS5</code> - Bogacki-Shampine 4/5 Runge-Kutta method.</li>
+<li><code>Vern6</code> - Verner's "Most Efficient" 5/6 Runge-Kutta method.</li>
+<li><code>TanYam7</code> - Tanaka-Yamashita 7 Runge-Kutta method.</li>
+<li><code>DP8</code> - Hairer's 8/5/3 adaption of the Dormand-Prince 8 method Runge-Kutta method.</li>
+<li><code>TsitPap8</code> - Tsitouras-Papakostas 8/7 Runge-Kutta method.</li>
+<li><code>Vern9</code> - Verner's "Most Efficient" 9/8 Runge-Kutta method.</li>
 <li><code>:Feagin10</code> - Feagin's 10th-order Runge-Kutta method.</li>
 <li><code>:Feagin12</code> - Feagin's 12th-order Runge-Kutta method.</li>
 <li><code>:Feagin14</code> - Feagin's 14th-order Runge-Kutta method.</li>
-<li><code>:Feagin10Vectorized</code> - Feagin's 10th-order Runge-Kutta method. Not as optimized as the other implementation.</li>
-<li><code>:Feagin12Vectorized</code> - Feagin's 12th-order Runge-Kutta method. Not as optimized as the other implementation.</li>
-<li><code>:Feagin14Vectorized</code> - Feagin's 14th-order Runge-Kutta method. Not as optimized as the other implementation.</li>
+<li><code>:ExplicitRK</code> - A general Runge-Kutta solver which takes in a tableau. Can be adaptive. Tableaus are specified via the keyword argument <code>tab=tableau</code>. The default tableau is for Dormand-Prince 4/5. Other supplied tableaus can be found in the Supplied Tableaus section.</li>
+<li><code>:ImplicitEuler</code> - A 1st order implicit solver. Unconditionally stable.</li>
+<li><code>:Trapezoid</code> - A second order unconditionally stable implicit solver. Good for highly stiff.</li>
+<li><code>:Rosenbrock32</code> - A fast solver which is good for mildy stiff equations.</li>
 <li>
-<p><code>:ExplicitRK</code> - A general Runge-Kutta solver which takes in a tableau. Can be adaptive. Tableaus are specified via the keyword argument <code>tab=tableau</code>. The default tableau is for Dormand-Prine 4/5. Other supplied tableaus include:</p>
+<p>DifferentialEquations.jl Vectorized Implementations (Not as efficient, allocate, but may be useful for specific purposes)</p>
 <ul>
-<li><code>constructRalston()</code> - Returns a tableau for Ralston's method</li>
-<li><code>constructRKF()</code> - Returns a tableau for Runge-Kutta-Fehlberg 4/5</li>
-<li><code>constructBogakiShampine()</code> - Returns a tableau for Bogakai-Shampine's 2/3 method.</li>
-<li><code>constructCashKarp()</code> - Returns a tableau for the Cash-Karp method 4/5.</li>
-<li><code>constructDormandPrince()</code> - Returns a tableau for Dormand-Prince 4/5.</li>
-<li><code>constructRKF8()</code> - Returns a tableau for Runge-Kutta-Fehlberg Order 7/8 method.</li>
-<li><code>constructDormandPrice8()</code> - Returns a tableau for the Dormand-Prince Order 7/8 method.
-          * <code>:ImplicitEuler</code> - A 1st order implicit solver. Unconditionally stable.
-          * <code>:Trapezoid</code> - A second order unconditionally stable implicit solver. Good for highly stiff.
-          * <code>:Rosenbrock32</code> - A fast solver which is good for stiff equations.<ul>
+<li><code>ExplicitRKVectorized</code> - A general Runge-Kutta solver which takes in a tableau. Can be adaptive.</li>
+<li><code>BS3Vectorized</code> - Bogacki-Shampine 2/3 Runge-Kutta method.</li>
+<li><code>Tsit5Vectorized</code> - Tsitouras 4/5 Runge-Kutta method.</li>
+<li><code>BS5Vectorized</code> - Bogacki-Shampine 4/5 Runge-Kutta method.</li>
+<li><code>Vern6Vectorized</code> - Verner's "Most Efficient" 5/6 Runge-Kutta method.</li>
+<li><code>TanYam7Vectorized</code> - Tanaka-Yamashita 7 Runge-Kutta method.</li>
+<li><code>DP8Vectorized</code> - Hairer's 8/5/3 adaption of the Dormand-Prince 8 method Runge-Kutta method.</li>
+<li><code>TsitPap8Vectorized</code> - Tsitouras-Papakostas 8/7 Runge-Kutta method.</li>
+<li><code>Vern9Vectorized</code> - Verner's "Most Efficient" 9/8 Runge-Kutta method.</li>
+<li><code>:Feagin10Vectorized</code> - Feagin's 10th-order Runge-Kutta method.</li>
+<li><code>:Feagin12Vectorized</code> - Feagin's 12th-order Runge-Kutta method.</li>
+<li><code>:Feagin14Vectorized</code> - Feagin's 14th-order Runge-Kutta method.</li>
 <li>ODEInterface.jl</li>
-</ul>
-</li>
 </ul>
 </li>
 <li>
@@ -382,13 +420,11 @@
 </li>
 <li><code>:dop853</code> - Explicit Runge-Kutta 8(5,3) by Dormand-Prince</li>
 <li><code>:odex</code> - GBS extrapolation-algorithm based on the midpoint rule</li>
-<li><code>:seulex</code> - extrapolation-algorithm bsed on the linear implicit Euler method</li>
-<li><code>:radau</code> - implicit Runge-Kutta (Rdau IIA) of variable order between 5 and 13</li>
+<li><code>:seulex</code> - extrapolation-algorithm based on the linear implicit Euler method</li>
+<li><code>:radau</code> - implicit Runge-Kutta (Radau IIA) of variable order between 5 and 13</li>
+<li><code>:radau5</code> - implicit Runge-Kutta method (Radau IIA) of order 5</li>
 <li>
-<p><code>:radau5</code> - implicit Runge-Kutta method (Radau IIA) of order 5</p>
-<ul>
-<li>ODE.jl</li>
-</ul>
+<p>ODE.jl</p>
 </li>
 <li>
 <p><code>:ode23</code> - Bogakai-Shampine's 2/3 method</p>
@@ -404,11 +440,89 @@
 </ul>
 </li>
 </ul>
-</li>
+<p><a id='List-of-Supplied-Tableaus-1'></a></p>
+<h2 id="list-of-supplied-tableaus">List of Supplied Tableaus</h2>
+<p>A large variety of tableaus have been supplied by default. For the most useful and common algorithms, a hand-optimized version is supplied and is recommended for general uses (i.e. use <code>:DP5</code> instead of <code>:ExplicitRK</code> with <code>tableau=constructDormandPrince()</code>). However, these serve as a good method for comparing between tableaus and understanding the pros/cons of the methods. Implemented are every published tableau (that I know exist). Note that user-defined tableaus also are accepted. To see how to define a tableau, checkout the <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/blob/master/src/ode/ode_tableaus.jl">premade tableau source code</a>. Tableau docstrings should have appropriate citations (if not, file an issue).</p>
+<ul>
+<li><code>constructHuen</code> Huen's order 2 method.</li>
+<li><code>constructRalston()</code> - Ralston's order 2 method.</li>
+<li><code>constructBogakiShampine3()</code> - Bogakai-Shampine's 2/3 method.</li>
+<li><code>constructRKF4()</code> - Runge-Kutta-Fehlberg 3/4.</li>
+<li><code>constructRKF5()</code> - Runge-Kutta-Fehlberg 4/5.</li>
+<li><code>constructRungeFirst5()</code> - Runge's first 5th order method.</li>
+<li><code>constructCassity5()</code> - Cassity's 5th order method.</li>
+<li><code>constructLawson5()</code> - Lawson's 5th order method.</li>
+<li><code>constructLutherKonen5</code> - Luther-Konen's first 5th order method.</li>
+<li><code>constructLutherKonen52()</code> - Luther-Konen's second 5th order method.</li>
+<li><code>constructLutherKonen53()</code> - Luther-Konen's third 5th order method.</li>
+<li><code>constructPapakostasPapaGeorgiou5()</code> - Papakostas and PapaGeorgiou more stable order 5 method.</li>
+<li><code>constructPapakostasPapaGeorgiou52()</code> - Papakostas and PapaGeorgiou more efficient order 5 method.</li>
+<li><code>constructTsitouras5()</code> - Tsitouras's order 5 method.</li>
+<li><code>constructBogakiShampine5()</code> - Bogaki and Shampine's Order 5 method.</li>
+<li><code>constructSharpSmart5()</code> - Sharp and Smart's Order 5 method.</li>
+<li><code>constructCashKarp()</code> - Cash-Karp method 4/5.</li>
+<li><code>constructDormandPrince()</code> - Dormand-Prince 4/5.</li>
+<li><code>constructButcher6()</code> - Butcher's first order 6 method.</li>
+<li><code>constructButcher62()</code> - Butcher's second order 6 method.</li>
+<li><code>constructButcher63()</code> - Butcher's third order 6 method.</li>
+<li><code>constructDormandPrince6()</code> - Dormand-Prince's 5/6 method.</li>
+<li><code>constructSharpVerner6()</code> Sharp-Verner's 5/6 method.</li>
+<li><code>constructVerner916()</code> - Verner's more efficient order 6 method (1991).</li>
+<li><code>constructVerner9162()</code> - Verner's second more efficient order 6 method (1991).</li>
+<li><code>constructVernerRobust6()</code> - Verner's "most robust" order 6 method.</li>
+<li><code>constructVernerEfficient6()</code> - Verner's "most efficient" order 6 method.</li>
+<li><code>constructPapakostas6()</code> - Papakostas's order 6 method.</li>
+<li><code>constructLawson6()</code> - Lawson's order 6 method.</li>
+<li><code>constructTsitourasPapakostas6()</code> - Tsitouras and Papakostas's order 6 method.</li>
+<li><code>constructDormandLockyerMcCorriganPrince6()</code> - the Dormand-Lockyer-McCorrigan-Prince order 6 method.</li>
+<li><code>constructTanakaKasugaYamashitaYazaki6A()</code> - Tanaka-Kasuga-Yamashita-Yazaki order 6 method A.</li>
+<li><code>constructTanakaKasugaYamashitaYazaki6B()</code> - Tanaka-Kasuga-Yamashita-Yazaki order 6 method B.</li>
+<li><code>constructTanakaKasugaYamashitaYazaki6C()</code> - Tanaka-Kasuga-Yamashita-Yazaki order 6 method C.</li>
+<li><code>constructTanakaKasugaYamashitaYazaki6D()</code> - Tanaka-Kasuga-Yamashita-Yazaki order 6 method D.</li>
+<li><code>constructMikkawyEisa()</code> - Mikkawy and Eisa's order 6 method.</li>
+<li><code>constructChummund6()</code> - Chummund's first order 6 method.</li>
+<li><code>constructChummund62()</code> - Chummund's second order 6 method.</li>
+<li><code>constructHuta6()</code> - Huta's first order 6 method.</li>
+<li><code>constructHuta62()</code> - Huta's second order 6 method.</li>
+<li><code>constructVerner6()</code> - An old order 6 method attributed to Verner.</li>
+<li><code>constructDverk()</code> - The classic DVERK algorithm attributed to Verner.</li>
+<li><code>constructClassicVerner6()</code> - A classic Verner order 6 algorithm (1978).</li>
+<li><code>constructButcher7()</code> - Butcher's order 7 algorithm.</li>
+<li><code>constructClassicVerner7()</code>- A classic Verner order 7 algorithm (1978).</li>
+<li><code>constructVernerRobust7()</code> - Verner's "most robust" order 7 algorithm.</li>
+<li><code>constructTanakaYamashitaStable7()</code> - Tanaka-Yamashita more stable order 7 algorithm.</li>
+<li><code>constructTanakaYamashitaEfficient7()</code> - Tanaka-Yamashita more efficient order 7 algorithm.</li>
+<li><code>constructSharpSmart7()</code> - Sharp-Smart's order 7 algorithm.</li>
+<li><code>constructSharpVerner7()</code> - Sharp-Verner's order 7 algorithm.</li>
+<li><code>constructVernerEfficient7()</code> - Verner's "most efficient" order 7 algorithm.</li>
+<li><code>constructClassicVerner8()</code> - A classic Verner order 8 algorithm (1978).</li>
+<li><code>constructCooperVerner8()</code> - Cooper-Verner's first order 8 algorithm.</li>
+<li><code>constructCooperVerner82()</code> - Cooper-Verner's second order 8 algorithm.</li>
+<li><code>constructTsitourasPapakostas8()</code> - Tsitouras-Papakostas order 8 algorithm.</li>
+<li><code>constructdverk78()</code> - The classic order 8 DVERK algorithm.</li>
+<li><code>constructEnrightVerner8()</code> - Enright-Verner order 8 algorithm.</li>
+<li><code>constructCurtis8()</code> - Curtis' order 8 algorithm.</li>
+<li><code>constructRKF8()</code> - Runge-Kutta-Fehlberg Order 7/8 method.</li>
+<li><code>constructDormandPrice8()</code> - Dormand-Prince Order 7/8 method.</li>
+<li><code>constructDormandPrince8_64bit()</code> - Dormand-Prince Order 7/8 method. Coefficients are rational approximations good for 64 bits.</li>
+<li><code>constructVernerRobust9()</code> - Verner's "most robust" order 9 method.</li>
+<li><code>constructVernerEfficient9()</code> - Verner's "most efficient" order 9 method.</li>
+<li><code>constructSharp9()</code> - Sharp's order 9 method.</li>
+<li><code>constructTsitouras9()</code> - Tsitouras's first order 9 method.</li>
+<li><code>constructTsitouras92()</code> - Tsitouras's second order 9 method.</li>
+<li><code>constructCurtis10()</code> - Curtis' order 10 method.</li>
+<li><code>constructOno10()</code> - Ono's order 10 method.</li>
+<li><code>constructFeagin10Tableau()</code> - Feagin's order 10 method.</li>
+<li><code>constructCurtis10()</code> - Curtis' order 10 method.</li>
+<li><code>constructBaker10()</code> - Baker's order 10 method.</li>
+<li><code>constructHairer10()</code> Hairer's order 10 method.</li>
+<li><code>constructFeagin12Tableau()</code> - Feagin's order 12 method.</li>
+<li><code>constructOno12()</code> - Ono's order 12 method.</li>
+<li><code>constructFeagin14Tableau()</code> Feagin's order 14 method.</li>
 </ul>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/6607d4114a5427828afb9e28837abada7b9ecb0f/src/ode/ode_solve.jl#L1-L79' class='documenter-source'>source</a><br></p>
-<p><a id='Pros-and-Cons-of-Different-Methods-1'></a></p>
-<h2 id="pros-and-cons-of-different-methods">Pros and Cons of Different Methods</h2>
+<p><a id='Analysis-of-Methods-1'></a></p>
+<h2 id="analysis-of-methods">Analysis of Methods</h2>
+<p>For a walkthrough of the various method pros/cons, see <a href="../../internals/notes_on_algorithms">notes on algorithms</a></p>
               
             </div>
           </div>
