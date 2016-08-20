@@ -344,7 +344,9 @@
 <p>Plotting functionality is provided by a recipe to Plots.jl. To use plot solutions, simply call the <code>plot(type)</code> and the plotter will generate appropriate plots. If <code>save_timeseries</code> was used, the plotters can generate animations of the solutions to evolution equations. Plots can be customized using all of the keyword arguments provided by Plots.jl. Please see Plots.jl's documentation for more information.</p>
 <p><a id='Extras-for-Developers-and-Researchers-1'></a></p>
 <h1 id="extras-for-developers-and-researchers">Extras for Developers and Researchers</h1>
-<p>DifferentialEquations.jl also provides some helper functionality to assist with general forms of analysis. The problem types allow one to optionally specify the true solution. When this is given to the solver, the solution object returns with many error calculations. An array of solutions can be made into a <code>ConvergenceSimulation</code> (or the test_convergence functions can be used) which then generates all of the convergence test results and allows for plotting (great for developing new methods!). Lastly, <code>BenchmarkSimulations</code> allows one to compare between methods and easily plot the results.</p>
+<p>DifferentialEquations.jl also provides some helper functionality to assist with general forms of analysis. The problem types allow one to optionally specify the true solution. When this is given to the solver, the solution object returns with many error calculations. An array of solutions can be made into a <code>ConvergenceSimulation</code> (or the test_convergence functions can be used) which then generates all of the convergence test results and allows for plotting (great for developing new methods!).</p>
+<p>Near Future:</p>
+<p>The <code>BenchmarkSimulations</code> allows one to compare between methods and easily plot the results. Also, recipes are provided for Runge-Kutta tableaus to plot stability regions and calculate the coefficient of the highest order truncation error term.</p>
               
             </div>
           </div>

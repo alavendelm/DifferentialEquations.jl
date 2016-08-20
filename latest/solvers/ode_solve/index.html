@@ -347,7 +347,8 @@
 <li><code>tableau</code>: The tableau for an <code>:ExplicitRK</code> algorithm. Defaults to a Dormand-Prince 4/5 method.</li>
 <li><code>adaptive</code> - Turns on adaptive timestepping for appropriate methods. Default is true.</li>
 <li><code>γ</code> - The risk-factor γ in the q equation for adaptive timestepping. Default is .9.</li>
-<li><code>timechoicealg</code> - Chooses the method which is used for making the adaptive timestep choices. Default is <code>:Lund</code> for Lund stabilization (PI stepsize control). The other option is <code>:Simple</code> for the standard simple error-based rejection control.</li>
+<li><code>timechoicealg</code> - Chooses the method which is used for making the adaptive timestep choices. Default is <code>:Lund</code> for Lund stabilization (PI stepsize control). The other option is <code>:Simple</code> for the standard simple error-based rejection</li>
+<li><code>β</code> - The Lund stabilization β parameter. Defaults are algorithm-dependent.</li>
 <li><code>qmax</code> - Defines the maximum value possible for the adaptive q. Default is 10.</li>
 <li><code>ablstol</code> - Absolute tolerance in adaptive timestepping. Defaults to 1e-3.</li>
 <li><code>reltol</code> - Relative tolerance in adaptive timestepping. Defaults to 1e-6.</li>
@@ -361,9 +362,10 @@
 <li><code>alg</code>: The solver algorithm. Defult is <code>:DP5</code>. Note that any keyword argument available in the external solvers are accessible via keyword arguemnts. For example, for the ODEInterface.jl algorithms, one can specify <code>SSBETA=0.03</code> as a keyword argument and it will do as it states in the ODEInterface.jl documentation. Common options such as <code>MAXSS</code> (max stepsize) are aliased to one can use the DifferentialEquations.jl syntax <code>Δtmax</code> or <code>MAXSS</code>. The possibilities for the solvers are:</li>
 </ul>
 <p>For a full list of algorithms, please see the solver documentation.</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/81d4d4052d4d7df32c7f37a097364fdb8509f7e1/src/ode/ode_solve.jl#L1-L36' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/ece6cb63e88609bdab1583dd0f86f2be35ce1b3b/src/ode/ode_solve.jl#L1-L37' class='documenter-source'>source</a><br></p>
 <p><a id='Recommended-Methods-1'></a></p>
 <h2 id="recommended-methods">Recommended Methods</h2>
+<p>Currently, a total of 118 algorithm choices are available. This guide is to help you choose the right one.</p>
 <p><a id='Non-Stiff-Problems-1'></a></p>
 <h3 id="non-stiff-problems">Non-Stiff Problems</h3>
 <p>For non-stiff problems, the native DifferentialEquations.jl algorithms are vastly more efficient than the other choices (ODEInterface and ODE.jl). For most non-stiff problems, we recommend <code>:DP5</code> (this is the default algorithm). When more robust error control is required, <code>:BS5</code> is a good choice. For fast solving at lower tolerances, we recommend <code>:BS3</code>. For tolerances which are at about the truncation error of Float64 (1e-16), we recommend <code>:DP8</code> as a robust choice and <code>:Vern9</code> as an efficient choice.</p>
@@ -445,7 +447,7 @@
 <p>A large variety of tableaus have been supplied by default. For the most useful and common algorithms, a hand-optimized version is supplied and is recommended for general uses (i.e. use <code>:DP5</code> instead of <code>:ExplicitRK</code> with <code>tableau=constructDormandPrince()</code>). However, these serve as a good method for comparing between tableaus and understanding the pros/cons of the methods. Implemented are every published tableau (that I know exist). Note that user-defined tableaus also are accepted. To see how to define a tableau, checkout the <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/blob/master/src/ode/ode_tableaus.jl">premade tableau source code</a>. Tableau docstrings should have appropriate citations (if not, file an issue).</p>
 <p>[Note: I hope to in the near future implement plot recipes which will plot the stability regions for a given tableau, and calculate the coefficient of the highest order truncation error term.]</p>
 <ul>
-<li><code>constructHuen</code> Huen's order 2 method.</li>
+<li><code>constructHuen()</code> Huen's order 2 method.</li>
 <li><code>constructRalston()</code> - Ralston's order 2 method.</li>
 <li><code>constructBogakiShampine3()</code> - Bogakai-Shampine's 2/3 method.</li>
 <li><code>constructRKF4()</code> - Runge-Kutta-Fehlberg 3/4.</li>
