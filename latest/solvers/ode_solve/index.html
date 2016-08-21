@@ -362,7 +362,7 @@
 <li><code>alg</code>: The solver algorithm. Defult is <code>:DP5</code>. Note that any keyword argument available in the external solvers are accessible via keyword arguemnts. For example, for the ODEInterface.jl algorithms, one can specify <code>SSBETA=0.03</code> as a keyword argument and it will do as it states in the ODEInterface.jl documentation. Common options such as <code>MAXSS</code> (max stepsize) are aliased to one can use the DifferentialEquations.jl syntax <code>Δtmax</code> or <code>MAXSS</code>. The possibilities for the solvers are:</li>
 </ul>
 <p>For a full list of algorithms, please see the solver documentation.</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/ece6cb63e88609bdab1583dd0f86f2be35ce1b3b/src/ode/ode_solve.jl#L1-L37' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/1dd5160a9e3e21d9acad71c2146a4010a64d4bce/src/ode/ode_solve.jl#L1-L37' class='documenter-source'>source</a><br></p>
 <p><a id='Recommended-Methods-1'></a></p>
 <h2 id="recommended-methods">Recommended Methods</h2>
 <p>Currently, a total of 118 algorithm choices are available. This guide is to help you choose the right one.</p>
@@ -372,8 +372,7 @@
 <p>For high accuracy non-stiff solving, we recommend the <code>:Feagin12</code> or <code>:Feagin14</code> methods. These are more robust than Adams-Bashforth methods to discontinuities and achieve very high precision, and are much more efficient than the extrapolation methods.</p>
 <p><a id='Stiff-Problems-1'></a></p>
 <h3 id="stiff-problems">Stiff Problems</h3>
-<p>For mildly stiff problems, <code>:Rosenbrock32</code> is a good choice. As a native DifferentialEquations.jl solver, all Julia-defined numbers will work. This method uses ForwardDiff to automatically guess the Jacobian. For faster solving when the Jacobian is known, use <code>radau</code>. For highly stiff problems where Julia-defined numbers need to be used (SIUnits, Arbs), <code>:Trapezoid</code> is the current best choice. However, for the most efficient non-stiff solver, use <code>:radau</code>.</p>
-<p>(In the near future, LSODE and CVODE will be wrapped and will be other good choices for stiff solvers. Also native BDF and NDF methods methods with switching to ABM are being developed.)</p>
+<p>For mildly stiff problems, <code>:Rosenbrock32</code> is a good choice. As a native DifferentialEquations.jl solver, all Julia-defined numbers will work. This method uses ForwardDiff to automatically guess the Jacobian. For faster solving when the Jacobian is known, use <code>radau</code>. For highly stiff problems where Julia-defined numbers need to be used (SIUnits, Arbs), <code>:Trapezoid</code> is the current best choice. However, for the most efficient non-stiff solvers, use <code>:radau</code> or <code>:cvode</code> (note: the current Sundials wrapper for cvode does not include adaptive stepping. That is coming soon!)</p>
 <p><a id='Full-List-of-Methods-1'></a></p>
 <h2 id="full-list-of-methods">Full List of Methods</h2>
 <ul>
