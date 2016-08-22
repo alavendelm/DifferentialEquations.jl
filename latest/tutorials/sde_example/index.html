@@ -332,7 +332,7 @@
 <p>$$
 du = f(u,t)dt + Σσᵢ(u,t)dWⁱ
 $$</p>
-<p>where $f(u,t)=αu$ and $σ(u,t)=βu$. We know via Stochastic Calculus that the solution to this equation is $u(t,W)=u₀<em>exp((α-(β^2)/2)</em>t+β*W)$. To solve this numerically, we define a problem type by giving it the equation and the initial condition:</p>
+<p>where $f(u,t)=αu$ and $σ(u,t)=βu$. We know via Stochastic Calculus that the solution to this equation is $u(t,W)=u₀\exp((α-\frac{β^2}{2})t+βW)$. To solve this numerically, we define a problem type by giving it the equation and the initial condition:</p>
 <pre class="codehilite"><code class="language-julia">using DifferentialEquations
 α=1
 β=1

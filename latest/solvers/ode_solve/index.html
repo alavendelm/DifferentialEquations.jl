@@ -362,17 +362,17 @@
 <li><code>alg</code>: The solver algorithm. Defult is <code>:DP5</code>. Note that any keyword argument available in the external solvers are accessible via keyword arguemnts. For example, for the ODEInterface.jl algorithms, one can specify <code>SSBETA=0.03</code> as a keyword argument and it will do as it states in the ODEInterface.jl documentation. Common options such as <code>MAXSS</code> (max stepsize) are aliased to one can use the DifferentialEquations.jl syntax <code>Δtmax</code> or <code>MAXSS</code>. The possibilities for the solvers are:</li>
 </ul>
 <p>For a full list of algorithms, please see the solver documentation.</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/8be146760a3dfd7335b35f74149559f60110fd70/src/ode/ode_solve.jl#L1-L37' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/a7676f042f74bb1fffd2c1e0ed7dd111a8d66b20/src/ode/ode_solve.jl#L1-L37' class='documenter-source'>source</a><br></p>
 <p><a id='Recommended-Methods-1'></a></p>
 <h2 id="recommended-methods">Recommended Methods</h2>
-<p>Currently, a total of 118 algorithm choices are available. This guide is to help you choose the right one.</p>
+<p>Currently, a total of 120 algorithm choices are available. This guide is to help you choose the right one.</p>
 <p><a id='Non-Stiff-Problems-1'></a></p>
 <h3 id="non-stiff-problems">Non-Stiff Problems</h3>
 <p>For non-stiff problems, the native DifferentialEquations.jl algorithms are vastly more efficient than the other choices (ODEInterface and ODE.jl). For most non-stiff problems, we recommend <code>:DP5</code> (this is the default algorithm). When more robust error control is required, <code>:BS5</code> is a good choice. For fast solving at lower tolerances, we recommend <code>:BS3</code>. For tolerances which are at about the truncation error of Float64 (1e-16), we recommend <code>:DP8</code> as a robust choice and <code>:Vern9</code> as an efficient choice.</p>
 <p>For high accuracy non-stiff solving, we recommend the <code>:Feagin12</code> or <code>:Feagin14</code> methods. These are more robust than Adams-Bashforth methods to discontinuities and achieve very high precision, and are much more efficient than the extrapolation methods.</p>
 <p><a id='Stiff-Problems-1'></a></p>
 <h3 id="stiff-problems">Stiff Problems</h3>
-<p>For mildly stiff problems, <code>:Rosenbrock32</code> is a good choice. As a native DifferentialEquations.jl solver, all Julia-defined numbers will work. This method uses ForwardDiff to automatically guess the Jacobian. For faster solving when the Jacobian is known, use <code>radau</code>. For highly stiff problems where Julia-defined numbers need to be used (SIUnits, Arbs), <code>:Trapezoid</code> is the current best choice. However, for the most efficient non-stiff solvers, use <code>:radau</code> or <code>:cvode</code> (note: the current Sundials wrapper for cvode does not include adaptive stepping. That is coming soon!)</p>
+<p>For mildly stiff problems, <code>:Rosenbrock32</code> is a good choice. As a native DifferentialEquations.jl solver, all Julia-defined numbers will work. This method uses ForwardDiff to automatically guess the Jacobian. For faster solving when the Jacobian is known, use <code>radau</code>. For highly stiff problems where Julia-defined numbers need to be used (SIUnits, Arbs), <code>:Trapezoid</code> is the current best choice. However, for the most efficient non-stiff solvers, use <code>:radau</code> or <code>:cvode</code>.</p>
 <p><a id='Full-List-of-Methods-1'></a></p>
 <h2 id="full-list-of-methods">Full List of Methods</h2>
 <ul>
@@ -438,6 +438,9 @@
 <li><code>:ode2_heun</code> - Heun's Method</li>
 <li><code>:ode4</code> - RK4</li>
 <li><code>:ode45_fe</code> - Runge-Kutta-Fehlberg 4/5 method</li>
+<li>Sundials.jl</li>
+<li><code>:cvode_BDF</code> - CVode Backward Differentiation Formula (BDF) solver.</li>
+<li><code>:cvode_Adams</code> - CVode Adams-Moulton solver</li>
 </ul>
 </li>
 </ul>
