@@ -81,6 +81,8 @@
                 
                     <li><a class="toctree-l4" href="#systems-of-equations">Systems of Equations</a></li>
                 
+                    <li><a class="toctree-l4" href="#defining-systems-of-equations-eloquent-using-ode_define">Defining Systems of Equations Eloquent Using @ode_define</a></li>
+                
             
             </ul>
         
@@ -334,13 +336,13 @@
 <p>This tutorial will introduce you to the functionality for solving ODEs. Other introductions can be found by <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/examples">checking out the IJulia notebooks in the examples folder</a>.</p>
 <p>In this example we will solve the equation</p>
 <p>$$
-\frac{du}{dt} = f(u,t)
+\frac{du}{dt} = f(t,u)
 $$</p>
-<p>where $f(u,t)=αu$. We know via Calculus that the solution to this equation is $u(t)=u₀\exp(αt)$. To solve this numerically, we define a problem type by giving it the equation and the initial condition:</p>
+<p>where $f(t,u)=αu$. We know via Calculus that the solution to this equation is $u(t)=u₀\exp(αt)$. To solve this numerically, we define a problem type by giving it the equation and the initial condition:</p>
 <pre class="codehilite"><code class="language-julia">using DifferentialEquations
 α=1
 u₀=1/2
-f(u,t) = u
+f(t,u) = u
 prob = ODEProblem(f,u₀)</code></pre>
 
 
@@ -400,7 +402,7 @@ Plots.gui()</code></pre>
 <p>We can also solve systems of equations. DifferentialEquations.jl can handle any size problem, so instead of showing it for a vector, let's let u be a matrix! To do this, we simply need to have u₀ be a matrix, and define f such that it takes in a matrix and outputs a matrix. We can define a matrix of linear ODEs as follows:</p>
 <pre class="codehilite"><code class="language-julia">u₀=rand(4,2).*ones(4,2)/2
 α=ones(4,2)
-f(u,t) = α.*u
+f(t,u) = α.*u
 prob = ODEProblem(f,u₀)</code></pre>
 
 
@@ -411,6 +413,25 @@ Plots.gui()</code></pre>
 
 
 <p><img src="https://raw.githubusercontent.com/ChrisRackauckas/DifferentialEquations.jl/master/examples/plots/multiODEplot.png" width="750" align="middle"  /></p>
+<p><a id='Defining-Systems-of-Equations-Eloquent-Using-@ode_define-1'></a></p>
+<h3 id="defining-systems-of-equations-eloquent-using-ode_define">Defining Systems of Equations Eloquent Using @ode_define</h3>
+<p>To simplify your life, DifferentialEquations.jl provides the <code>@ode_define</code> macro for "defining your ODE in psudocode" and getting a function which is efficient and runnable. For our example we will use <a href="https://en.wikipedia.org/wiki/Lorenz_system">the Lorenz system</a>. The standard way to write this out in most mathematical programs is the following:</p>
+<pre class="codehilite"><code class="language-julia">f = (t,u,du) -&gt; begin
+ du[1] = 10.0(u[2]-u[1])
+ du[2] = u[1]*(28.0-u[3]) - u[2]
+ du[3] = u[1]*u[2] - (8/3)*u[3]
+end</code></pre>
+
+
+<p>Here for more efficiency we plugged in the parameters. However, this does not look like the pretty LaTeX system we see on Wikipedia, and this might make it harder to double-check that you defined the system correctly. Using the <code>@ode_define</code> macro is much nicer:</p>
+<pre class="codehilite"><code class="language-julia">g = @ode_define begin
+  dx = σ*(y-x)
+  dy = x*(ρ-z) - y
+  dz = x*y - β*z
+end σ=&gt;10. ρ=&gt;28. β=&gt;(8/3)</code></pre>
+
+
+<p>DifferentialEquations.jl will automatically translate this to be exactly the same as <code>f</code>. The result is more legible code with no performance loss.</p>
               
             </div>
           </div>

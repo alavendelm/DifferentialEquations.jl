@@ -334,6 +334,16 @@ gD(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])/(8π*π)
 prob = PoissonProblem(f,gD)</code></pre>
 
 
+<p>Or we can use the <code>@fem_define</code> macro to beautify our code. The first argument is the function signature, which here is <code>(x)</code>. Second it's a list of variables to convert. This makes more sense in the Heat Equation examples, so we put in the blank expresion <code>()</code> for now. Then we put in our expression, and lastly we define the parameter values. <code>@fem_define</code> will automatically replace <code>x</code> by <code>x[:,1]</code> and <code>y</code> by <code>x[:,2]</code>, and will also subtitute in the defined parameters. The previous definition using <code>@fem_define</code> is as follows:</p>
+<pre class="codehilite"><code class="language-julia">f  = @fem_define((x),(),begin
+  sin(α.*x).*cos(α.*y)
+end,α=&gt;2π)
+gD = @fem_define((x),(),begin
+  sin(α.*x).*cos(α.*y)/β
+end,α=&gt;2π,β=&gt;8π*π)</code></pre>
+
+
+<p>The linebreaks are not required but I think it makes it more legible!</p>
 <p>Here we chose the dirichlet boundary condition <code>gD</code> to give the theoretical solution.  Other example problems can be found in <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/src/premades/premade_problems.jl">src/examples/exampleProblems.jl</a>. To solve this problem, we first have to generate a mesh. Here we will simply generate a mesh of triangles on the square [0,1]x[0,1] with Δx=2^(-5). To do so, we use the code:</p>
 <pre class="codehilite"><code class="language-julia">Δx = 1//2^(5)
 fem_mesh = notime_squaremesh([0 1 0 1],Δx,:dirichlet)</code></pre>

@@ -333,9 +333,9 @@
 <h1 id="defining-a-sde-problem">Defining a SDE Problem</h1>
 <p>To define an SDE Problem, you simply need to give the forcing function $f$, the noise function <code>σ</code>, and the initial condition $u₀$ which define an SDE</p>
 <p>$$
-du = f(u,t)dt + Σσᵢ(u,t)dWⁱ
+du = f(t,u)dt + Σσᵢ(t,u)dWⁱ
 $$</p>
-<p><code>f</code> and <code>σ</code> should be specified as <code>f(u,t)</code> and  <code>σ(u,t)</code> respectively, and <code>u₀</code> should be an AbstractArray whose geometry matches the desired geometry of <code>u</code>. Note that we are not limited to numbers or vectors for <code>u₀</code>, one is allowed to provide <code>u₀</code> as arbitrary matrices / higher dimension tensors as well. A vector of <code>σ</code>s can also be defined to determine an SDE of higher Ito dimension.</p>
+<p><code>f</code> and <code>σ</code> should be specified as <code>f(t,u)</code> and  <code>σ(t,u)</code> respectively, and <code>u₀</code> should be an AbstractArray whose geometry matches the desired geometry of <code>u</code>. Note that we are not limited to numbers or vectors for <code>u₀</code>, one is allowed to provide <code>u₀</code> as arbitrary matrices / higher dimension tensors as well. A vector of <code>σ</code>s can also be defined to determine an SDE of higher Ito dimension.</p>
 <p><a id='Problem-Type-1'></a></p>
 <h2 id="problem-type">Problem Type</h2>
 <p><a id='DifferentialEquations.SDEProblem' href='#DifferentialEquations.SDEProblem'>#</a>
@@ -358,34 +358,16 @@ $$</p>
 <li><code>numvars</code>: The number of variables in the system</li>
 <li><code>sizeu</code>: The size of the initial condition (and thus <code>u</code>)</li>
 </ul>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/679f10418789fa9456d6f7e75b0ee8d0989c24ed/src/general/problems.jl#L305-L331' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/f5ccdab28ec881a53c4474027f04302bf52ea5c2/src/general/problems.jl#L305-L331' class='documenter-source'>source</a><br></p>
 <p><a id='Example-Problems-1'></a></p>
 <h2 id="example-problems">Example Problems</h2>
 <p>Examples problems can be found in <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/blob/master/src/premades/premade_problems.jl">src/premades/premade_problems.jl</a></p>
-<p><a id='DifferentialEquations.twoDimlinearSDEExample' href='#DifferentialEquations.twoDimlinearSDEExample'>#</a>
-<strong><code>DifferentialEquations.twoDimlinearSDEExample</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem of 8 linear SDEs (as a 4x2 matrix) with solution $u(t,W)=u₀<em>exp((α-(β^2)/2)</em>t+β*W)$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/679f10418789fa9456d6f7e75b0ee8d0989c24ed/src/premades/premade_problems.jl#L109' class='documenter-source'>source</a><br></p>
-<p><a id='DifferentialEquations.cubicSDEExample' href='#DifferentialEquations.cubicSDEExample'>#</a>
-<strong><code>DifferentialEquations.cubicSDEExample</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem with solution $u(t,W)=((1+u₀)<em>exp(W)+u₀-1)./((1+u₀)</em>exp(W)+1-u₀)$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/679f10418789fa9456d6f7e75b0ee8d0989c24ed/src/premades/premade_problems.jl#L117' class='documenter-source'>source</a><br></p>
-<p><a id='DifferentialEquations.linearSDEExample' href='#DifferentialEquations.linearSDEExample'>#</a>
-<strong><code>DifferentialEquations.linearSDEExample</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem with solution $u(t,W)=u₀<em>exp((α-(β^2)/2)</em>t+β*W)$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/679f10418789fa9456d6f7e75b0ee8d0989c24ed/src/premades/premade_problems.jl#L101' class='documenter-source'>source</a><br></p>
-<p><a id='DifferentialEquations.multiDimAdditiveSDEExample' href='#DifferentialEquations.multiDimAdditiveSDEExample'>#</a>
-<strong><code>DifferentialEquations.multiDimAdditiveSDEExample</code></strong> &mdash; <em>Function</em>.</p>
-<p>Multiple Ito dimension extension of additiveSDEExample</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/679f10418789fa9456d6f7e75b0ee8d0989c24ed/src/premades/premade_problems.jl#L141' class='documenter-source'>source</a><br></p>
-<p><a id='DifferentialEquations.waveSDEExample' href='#DifferentialEquations.waveSDEExample'>#</a>
-<strong><code>DifferentialEquations.waveSDEExample</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem with solution $u(t,W)=atan(0.1*W + tan(u₀))$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/679f10418789fa9456d6f7e75b0ee8d0989c24ed/src/premades/premade_problems.jl#L125' class='documenter-source'>source</a><br></p>
-<p><a id='DifferentialEquations.additiveSDEExample' href='#DifferentialEquations.additiveSDEExample'>#</a>
-<strong><code>DifferentialEquations.additiveSDEExample</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example additive noise problem with solution $u₀./sqrt(1+t) + β<em>(t+α</em>W)./sqrt(1+t)$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/679f10418789fa9456d6f7e75b0ee8d0989c24ed/src/premades/premade_problems.jl#L133' class='documenter-source'>source</a><br></p>
+<pre class="codehilite"><code>DifferentialEquations.twoDimlinearSDEExample
+DifferentialEquations.cubicSDEExample
+DifferentialEquations.linearSDEExample
+DifferentialEquations.multiDimAdditiveSDEExample
+DifferentialEquations.waveSDEExample
+DifferentialEquations.additiveSDEExample</code></pre>
               
             </div>
           </div>

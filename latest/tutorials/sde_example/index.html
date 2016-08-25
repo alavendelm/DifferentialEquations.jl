@@ -330,21 +330,21 @@
 <p>This tutorial will introduce you to the functionality for solving SDE. Other introductions can be found by <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/examples">checking out the IJulia notebooks in the examples folder</a>.</p>
 <p>In this example we will solve the equation</p>
 <p>$$
-du = f(u,t)dt + Σσᵢ(u,t)dWⁱ
+du = f(t,u)dt + Σσᵢ(t,u)dWⁱ
 $$</p>
-<p>where $f(u,t)=αu$ and $σ(u,t)=βu$. We know via Stochastic Calculus that the solution to this equation is $u(t,W)=u₀\exp((α-\frac{β^2}{2})t+βW)$. To solve this numerically, we define a problem type by giving it the equation and the initial condition:</p>
+<p>where $f(t,u)=αu$ and $σ(t,u)=βu$. We know via Stochastic Calculus that the solution to this equation is $u(t,W)=u₀\exp((α-\frac{β^2}{2})t+βW)$. To solve this numerically, we define a problem type by giving it the equation and the initial condition:</p>
 <pre class="codehilite"><code class="language-julia">using DifferentialEquations
 α=1
 β=1
 u₀=1/2
-f(u,t) = α*u
-σ(u,t) = β*u
+f(t,u) = α*u
+σ(t,u) = β*u
 Δt = 1//2^(4) #The initial timestepping size. It will automatically assigned if not given.
 tspan = [0,1] # The timespan. This is the default if not given.</code></pre>
 
 
 <p>For reference, let's also give the <code>SDEProblem</code> the analytical solution. Note that each of the problem types allow for this, but it's always optional. This can be a good way to judge how accurate the algorithms are, or is used to test convergence of the algorithms for methods developers. Thus we define the problem object with:</p>
-<pre class="codehilite"><code class="language-julia">analytic(u₀,t,W) = u₀*exp((α-(β^2)/2)*t+β*W)
+<pre class="codehilite"><code class="language-julia">analytic(t,u₀,W) = u₀*exp((α-(β^2)/2)*t+β*W)
 prob = SDEProblem(f,σ,u₀,analytic=analytic)</code></pre>
 
 

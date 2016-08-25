@@ -329,7 +329,7 @@
 <h1 id="heat-equation-finite-element-method-example">Heat Equation Finite Element Method Example</h1>
 <p>This tutorial will introduce you to the functionality for solving a PDE. Other introductions can be found by <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/examples">checking out the IJulia notebooks in the examples folder</a>.</p>
 <p>In this example we will solve the heat equation $u_t=Δu+f$. To do this, we define a HeatProblem which contains the function $f$ and the boundary conditions. We specify one as follows:</p>
-<pre class="codehilite"><code class="language-julia">f(u,x,t)  = ones(size(x,1)) - .5u
+<pre class="codehilite"><code class="language-julia">f(t,x,u)  = ones(size(x,1)) - .5u
 u₀(x) = zeros(size(x,1))
 prob = HeatProblem(u₀,f)</code></pre>
 
