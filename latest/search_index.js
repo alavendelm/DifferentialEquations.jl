@@ -445,7 +445,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining an ODE Problem",
     "title": "Defining an ODE Problem",
     "category": "section",
-    "text": "To define an ODE Problem, you simply need to give the function f and the initial condition u which define an ODEfracdudt = f(tu)f should be specified as f(t,u) and u₀ should be an AbstractArray whose geometry matches the desired geometry of u. Note that we are not limited to numbers or vectors for u₀, one is allowed to provide u₀ as arbitrary matrices / higher dimension tensors as well."
+    "text": "To define an ODE Problem, you simply need to give the function f and the initial condition u which define an ODEfracdudt = f(tu)f should be specified as f(t,u) (or in-place as f(t,u,du)),and u₀ should be an AbstractArray (or number) whose geometry matches the desired geometry of u. Note that we are not limited to numbers or vectors for u₀, one is allowed to provide u₀ as arbitrary matrices / higher dimension tensors as well."
 },
 
 {
@@ -469,31 +469,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining an ODE Problem",
     "title": "DifferentialEquations.prob_ode_linear",
     "category": "Constant",
-    "text": "Linear ODE on Float64\n\n\n\n"
-},
-
-{
-    "location": "man/ODEProblem.html#DifferentialEquations.prob_ode_bigfloat2Dlinear",
-    "page": "Defining an ODE Problem",
-    "title": "DifferentialEquations.prob_ode_bigfloat2Dlinear",
-    "category": "Constant",
-    "text": "2D Linear ODE, bigfloats\n\n\n\n"
-},
-
-{
-    "location": "man/ODEProblem.html#DifferentialEquations.prob_ode_large2Dlinear",
-    "page": "Defining an ODE Problem",
-    "title": "DifferentialEquations.prob_ode_large2Dlinear",
-    "category": "Constant",
-    "text": "2D Linear ODE, 100x100\n\n\n\n"
-},
-
-{
-    "location": "man/ODEProblem.html#DifferentialEquations.prob_ode_rober",
-    "page": "Defining an ODE Problem",
-    "title": "DifferentialEquations.prob_ode_rober",
-    "category": "Constant",
-    "text": "The Robertson biochemical reactions\n\nhttp://www.radford.edu/~thompson/vodef90web/problems/demosnodislin/Single/DemoRobertson/demorobertson.pdf\n\nOr from Hairer Norsett Wanner Solving Ordinary Differential Euations I - Nonstiff Problems Page 129\n\nUsually solved on [0,1e11]\n\n\n\n"
+    "text": "Linear ODE\n\nfracdudt = u\n\nwith initial condition u=12, =101, and solution\n\nu(t) = ue^t\n\nwith Float64s\n\n\n\n"
 },
 
 {
@@ -501,7 +477,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining an ODE Problem",
     "title": "DifferentialEquations.prob_ode_2Dlinear",
     "category": "Constant",
-    "text": "2D Linear ODE, standard 4x2\n\n\n\n"
+    "text": "4x2 version of the Linear ODE\n\nfracdudt = u\n\nwith initial condition u=12, =101, and solution\n\nu(t) = ue^t\n\nwith Float64s\n\n\n\n"
 },
 
 {
@@ -509,39 +485,23 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining an ODE Problem",
     "title": "DifferentialEquations.prob_ode_bigfloatlinear",
     "category": "Constant",
-    "text": "Linear ODE on Float64\n\n\n\n"
+    "text": "Linear ODE\n\nfracdudt = u\n\nwith initial condition u=12, =101, and solution\n\nu(t) = ue^t\n\nwith BigFloats\n\n\n\n"
 },
 
 {
-    "location": "man/ODEProblem.html#DifferentialEquations.prob_ode_lorenz",
+    "location": "man/ODEProblem.html#DifferentialEquations.prob_ode_bigfloat2Dlinear",
     "page": "Defining an ODE Problem",
-    "title": "DifferentialEquations.prob_ode_lorenz",
+    "title": "DifferentialEquations.prob_ode_bigfloat2Dlinear",
     "category": "Constant",
-    "text": "Lorenz Attractor\n\n\n\n"
+    "text": "4x2 version of the Linear ODE\n\nfracdudt = u\n\nwith initial condition u=12, =101, and solution\n\nu(t) = ue^t\n\nwith BigFloats\n\n\n\n"
 },
 
 {
-    "location": "man/ODEProblem.html#DifferentialEquations.prob_ode_vanderpol",
+    "location": "man/ODEProblem.html#DifferentialEquations.prob_ode_large2Dlinear",
     "page": "Defining an ODE Problem",
-    "title": "DifferentialEquations.prob_ode_vanderpol",
+    "title": "DifferentialEquations.prob_ode_large2Dlinear",
     "category": "Constant",
-    "text": "Van der Pol Equations. For non-stiff version\n\n\n\n"
-},
-
-{
-    "location": "man/ODEProblem.html#DifferentialEquations.prob_ode_vanderpol_stiff",
-    "page": "Defining an ODE Problem",
-    "title": "DifferentialEquations.prob_ode_vanderpol_stiff",
-    "category": "Constant",
-    "text": "Van der Pol Equations. For difficult version.\n\n\n\n"
-},
-
-{
-    "location": "man/ODEProblem.html#DifferentialEquations.prob_ode_threebody",
-    "page": "Defining an ODE Problem",
-    "title": "DifferentialEquations.prob_ode_threebody",
-    "category": "Constant",
-    "text": "From Hairer Norsett Wanner Solving Ordinary Differential Euations I - Nonstiff Problems Page 129\n\nUsually solved on t₀ = 0.0; T = parse(BigFloat,\"17.0652165601579625588917206249\") Periodic with that setup\n\n\n\n"
+    "text": "100x100 version of the Linear ODE\n\nfracdudt = u\n\nwith initial condition u=12, =101, and solution\n\nu(t) = ue^t\n\nwith Float64s\n\n\n\n"
 },
 
 {
@@ -549,7 +509,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining an ODE Problem",
     "title": "DifferentialEquations.prob_ode_2Dlinear_notinplace",
     "category": "Constant",
-    "text": "2D Linear ODE, not in place.\n\n\n\n"
+    "text": "4x2 version of the Linear ODE\n\nfracdudt = u\n\nwith initial condition u=12, =101, and solution\n\nu(t) = ue^t\n\non Float64. Purposefully not in-place as a test.\n\n\n\n"
+},
+
+{
+    "location": "man/ODEProblem.html#DifferentialEquations.prob_ode_threebody",
+    "page": "Defining an ODE Problem",
+    "title": "DifferentialEquations.prob_ode_threebody",
+    "category": "Constant",
+    "text": "The ThreeBody problem as written by Hairer:\n\nbeginalign\ny = y + 2y - fracy+D - fracy-D \ny = y - 2y - fracyD - fracyD \nD = ((y+)^2 + y^2)^32 \nD = ((y-)^2+y^2)^32 \n = 0012277471 \n =1-\nendalign\n\nFrom Hairer Norsett Wanner Solving Ordinary Differential Euations I - Nonstiff Problems Page 129\n\nUsually solved on t₀ = 0.0; T = parse(BigFloat,\"17.0652165601579625588917206249\") Periodic with that setup.\n\n\n\n"
 },
 
 {
@@ -557,7 +525,39 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining an ODE Problem",
     "title": "DifferentialEquations.prob_ode_pleides",
     "category": "Constant",
-    "text": "Pleides Problem\n\nFrom Hairer Norsett Wanner Solving Ordinary Differential Euations I - Nonstiff Problems Page 244\n\nUsually solved from 0 to 3.\n\n\n\n"
+    "text": "Pleides Problem\n\nbeginalign\nx = sum_ji m(x-x)r \ny = sum_ji m(y-y)r\nendalign\n\nwhere\n\nr = ((x-x)^2 + (y-y)^2)^32\n\nand inital condtions are\n\nbeginalign\nx(0)=3  \nx(0)=3  \nx(0)=-1  \nx(0)=-3  \nx(0)=2  \nx(0)=-2  \nx(0)=2  \ny(0)=3  \ny(0)=-3  \ny(0)=2  \ny(0)=0  \ny(0)=0  \ny(0)=-4  \ny(0)=4\nendalign\n\nand with x(0)=y(0)=0 except for\n\nbeginalign\nx(0)=175 \nx(0)=-15 \ny(0)=-125 \ny(0)=1\nendalign\n\nFrom Hairer Norsett Wanner Solving Ordinary Differential Euations I - Nonstiff Problems Page 244\n\nUsually solved from 0 to 3.\n\n\n\n"
+},
+
+{
+    "location": "man/ODEProblem.html#DifferentialEquations.prob_ode_vanderpol",
+    "page": "Defining an ODE Problem",
+    "title": "DifferentialEquations.prob_ode_vanderpol",
+    "category": "Constant",
+    "text": "Van der Pol Equations\n\nbeginalign\nfracdxdt = y \nfracdydt = (1-x^2)y -x\nendalign\n\nwith =10 and u=0sqrt3\n\nNon-stiff parameters.\n\n\n\n"
+},
+
+{
+    "location": "man/ODEProblem.html#DifferentialEquations.prob_ode_vanderpol_stiff",
+    "page": "Defining an ODE Problem",
+    "title": "DifferentialEquations.prob_ode_vanderpol_stiff",
+    "category": "Constant",
+    "text": "Van der Pol Equations\n\nbeginalign\nfracdxdt = y \nfracdydt = (1-x^2)y -x\nendalign\n\nwith =10^6 and u=0sqrt3\n\nStiff parameters.\n\n\n\n"
+},
+
+{
+    "location": "man/ODEProblem.html#DifferentialEquations.prob_ode_rober",
+    "page": "Defining an ODE Problem",
+    "title": "DifferentialEquations.prob_ode_rober",
+    "category": "Constant",
+    "text": "The Robertson biochemical reactions:\n\nbeginalign\nfracdydt = -ky+kyy  \nfracdydt =  ky-ky^2-kyy \nfracdydt =  ky^2\nendalign\n\nwhere k=004, k=3times10^7, k=10^4. For details, see:\n\nHairer Norsett Wanner Solving Ordinary Differential Euations I - Nonstiff Problems Page 129\n\nUsually solved on [0,1e11]\n\n\n\n"
+},
+
+{
+    "location": "man/ODEProblem.html#DifferentialEquations.prob_ode_lorenz",
+    "page": "Defining an ODE Problem",
+    "title": "DifferentialEquations.prob_ode_lorenz",
+    "category": "Constant",
+    "text": "Lorenz Attractor\n\nbeginalign\nfracdxdt = (y-x) \nfracdydt = x(-z) - y \nfracdzdt = xy - z\nendalign\n\nwith =10, =28, =83, and inital condition u=111.\n\n\n\n"
 },
 
 {
@@ -565,7 +565,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining an ODE Problem",
     "title": "DifferentialEquations.prob_ode_rigidbody",
     "category": "Constant",
-    "text": "Rigid Body Equations\n\nFrom Solving Differential Equations in R by Karline Soetaert\n\nor Hairer Norsett Wanner Solving Ordinary Differential Euations I - Nonstiff Problems Page 244\n\nUsually solved from 0 to 20. Periodic at 10 and 20.\n\n\n\n"
+    "text": "Rigid Body Equations\n\nbeginalign\nfracdydt  = Iyy \nfracdydt  = Iyy \nfracdydt  = Iyy\nendalign\n\nwith I=-2, I=125, and I=-12.\n\nThe initial condition is y=100009.\n\nFrom Solving Differential Equations in R by Karline Soetaert\n\nor Hairer Norsett Wanner Solving Ordinary Differential Euations I - Nonstiff Problems Page 244\n\nUsually solved from 0 to 20. Periodic at 10 and 20.\n\n\n\n"
 },
 
 {
@@ -573,7 +573,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining an ODE Problem",
     "title": "Example Problems",
     "category": "section",
-    "text": "Examples problems can be found in src/premades/premade_problems.jlDifferentialEquations.prob_ode_linear\nDifferentialEquations.prob_ode_bigfloat2Dlinear\nDifferentialEquations.prob_ode_large2Dlinear\nDifferentialEquations.prob_ode_rober\nDifferentialEquations.prob_ode_2Dlinear\nDifferentialEquations.prob_ode_bigfloatlinear\nDifferentialEquations.prob_ode_lorenz\nDifferentialEquations.prob_ode_vanderpol\nDifferentialEquations.prob_ode_vanderpol_stiff\nDifferentialEquations.prob_ode_threebody\nDifferentialEquations.prob_ode_2Dlinear_notinplace\nDifferentialEquations.prob_ode_pleides\nDifferentialEquations.prob_ode_rigidbody"
+    "text": "Examples problems can be found in src/premades/premade_problems.jl.To use a sample problem, such as prob_ode_linear, you can do something like:prob = prob_ode_linear\nsol = solve(prob,[0;1])DifferentialEquations.prob_ode_linear\nDifferentialEquations.prob_ode_2Dlinear\nDifferentialEquations.prob_ode_bigfloatlinear\nDifferentialEquations.prob_ode_bigfloat2Dlinear\nDifferentialEquations.prob_ode_large2Dlinear\nDifferentialEquations.prob_ode_2Dlinear_notinplace\nDifferentialEquations.prob_ode_threebody\nDifferentialEquations.prob_ode_pleides\nDifferentialEquations.prob_ode_vanderpol\nDifferentialEquations.prob_ode_vanderpol_stiff\nDifferentialEquations.prob_ode_rober\nDifferentialEquations.prob_ode_lorenz\nDifferentialEquations.prob_ode_rigidbody"
 },
 
 {
@@ -613,7 +613,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a SDE Problem",
     "title": "DifferentialEquations.prob_sde_linear",
     "category": "Constant",
-    "text": "Example problem with solution u(tW)=uexp((-frac^22)t+W)\n\n\n\n"
+    "text": "du_t = udt + udW_t\n\nwhere β=1.01, α=0.87, and initial condtion u₀=1/2, with solution\n\nu(tuW_t)=uexp((-frac^22)t+W_t)\n\n\n\n"
 },
 
 {
@@ -621,39 +621,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a SDE Problem",
     "title": "DifferentialEquations.prob_sde_2Dlinear",
     "category": "Constant",
-    "text": "Example problem of 8 linear SDEs (as a 4x2 matrix) with solution u(tW)=uexp((-frac^22)t+W)\n\n\n\n"
-},
-
-{
-    "location": "man/SDEProblem.html#DifferentialEquations.prob_sde_additivesystem",
-    "page": "Defining a SDE Problem",
-    "title": "DifferentialEquations.prob_sde_additivesystem",
-    "category": "Constant",
-    "text": "Multiple Ito dimension extension of additiveSDEExample\n\n\n\n"
-},
-
-{
-    "location": "man/SDEProblem.html#DifferentialEquations.prob_sde_lorenz",
-    "page": "Defining a SDE Problem",
-    "title": "DifferentialEquations.prob_sde_lorenz",
-    "category": "Constant",
-    "text": "Lorenz Attractor with additive noise\n\n\n\n"
-},
-
-{
-    "location": "man/SDEProblem.html#DifferentialEquations.prob_sde_cubic",
-    "page": "Defining a SDE Problem",
-    "title": "DifferentialEquations.prob_sde_cubic",
-    "category": "Constant",
-    "text": "Example problem with solution u(tW)=frac(1+u)exp(W)+u-1(1+u)exp(W)+1-u\n\n\n\n"
-},
-
-{
-    "location": "man/SDEProblem.html#DifferentialEquations.prob_sde_additive",
-    "page": "Defining a SDE Problem",
-    "title": "DifferentialEquations.prob_sde_additive",
-    "category": "Constant",
-    "text": "Example additive noise problem with solution fracusqrt1+t + frac(t+W)sqrt1+t\n\n\n\n"
+    "text": "8 linear SDEs (as a 4x2 matrix):\n\ndu_t = udt + udW_t\n\nwhere β=1.01, α=0.87, and initial condtion u₀=1/2 with solution\n\nu(tuW_t)=uexp((-frac^22)t+W_t)\n\n\n\n"
 },
 
 {
@@ -661,7 +629,39 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a SDE Problem",
     "title": "DifferentialEquations.prob_sde_wave",
     "category": "Constant",
-    "text": "Example problem with solution u(tW)=arctan(fracW10 + tan(u))\n\n\n\n"
+    "text": "du_t = -frac1100sin(u)cos^3(u)dt + frac110cos^2(u_t) dW_t\n\nand initial condition u₀=1.0 with solution\n\nu(tuW_t)=arctan(fracW_t10 + tan(u))\n\n\n\n"
+},
+
+{
+    "location": "man/SDEProblem.html#DifferentialEquations.prob_sde_lorenz",
+    "page": "Defining a SDE Problem",
+    "title": "DifferentialEquations.prob_sde_lorenz",
+    "category": "Constant",
+    "text": "Lorenz Attractor with additive noise\n\nbeginalign\ndx = *(y-x)dt + dW_t \ndy = (x*(-z) - y)dt + dW_t \ndz = (x*y - *z)dt + dW_t \nendalign\n\nwith =10, =28, =83, =30 and inital condition u=111.\n\n\n\n"
+},
+
+{
+    "location": "man/SDEProblem.html#DifferentialEquations.prob_sde_cubic",
+    "page": "Defining a SDE Problem",
+    "title": "DifferentialEquations.prob_sde_cubic",
+    "category": "Constant",
+    "text": "du_t = frac14u(1-u^2)dt + frac12(1-u^2)dW_t\n\nand initial condtion u₀=1/2, with solution\n\nu(tuW_t)=frac(1+u)exp(W_t)+u-1(1+u)exp(W_t)+1-u\n\n\n\n"
+},
+
+{
+    "location": "man/SDEProblem.html#DifferentialEquations.prob_sde_additive",
+    "page": "Defining a SDE Problem",
+    "title": "DifferentialEquations.prob_sde_additive",
+    "category": "Constant",
+    "text": "Additive noise problem\n\nu_t = (fracsqrt1+t-frac12(1+t)u_t)dt + fracsqrt1+tdW_t\n\nand initial condition u₀=1.0 with α=0.1 and β=0.05, with solution\n\nu(tuW_t)=fracusqrt1+t + frac(t+W_t)sqrt1+t\n\n\n\n"
+},
+
+{
+    "location": "man/SDEProblem.html#DifferentialEquations.prob_sde_additivesystem",
+    "page": "Defining a SDE Problem",
+    "title": "DifferentialEquations.prob_sde_additivesystem",
+    "category": "Constant",
+    "text": "A multiple dimension extension of additiveSDEExample\n\n\n\n"
 },
 
 {
@@ -669,7 +669,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a SDE Problem",
     "title": "Example Problems",
     "category": "section",
-    "text": "Examples problems can be found in src/premades/premade_problems.jlDifferentialEquations.prob_sde_linear\nDifferentialEquations.prob_sde_2Dlinear\nDifferentialEquations.prob_sde_additivesystem\nDifferentialEquations.prob_sde_lorenz\nDifferentialEquations.prob_sde_cubic\nDifferentialEquations.prob_sde_additive\nDifferentialEquations.prob_sde_wave"
+    "text": "Examples problems can be found in src/premades/premade_problems.jlDifferentialEquations.prob_sde_linear\nDifferentialEquations.prob_sde_2Dlinear\nDifferentialEquations.prob_sde_wave\nDifferentialEquations.prob_sde_lorenz\nDifferentialEquations.prob_sde_cubic\nDifferentialEquations.prob_sde_additive\nDifferentialEquations.prob_sde_additivesystem"
 },
 
 {
@@ -733,7 +733,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a FEM Problem",
     "title": "DifferentialEquations.prob_poisson_birthdeathinteractingsystem",
     "category": "Constant",
-    "text": "Example problem which starts with 1/2 and solves the system f(u)=1-u2 and f(v)=5u-v\n\n\n\n"
+    "text": "Nonlinear Poisson equation with f(u)=1-u2 and f(v)=5u-v and initial condition homogenous 1/2. Corresponds to the steady state of a humogenous reaction-diffusion equation with the same f.\n\n\n\n"
 },
 
 {
@@ -741,7 +741,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a FEM Problem",
     "title": "DifferentialEquations.prob_poisson_noisywave",
     "category": "Constant",
-    "text": "Example problem with deterministic solution: u(xy)= sin(2*x)*cos(2*y)(8*)\n\n\n\n"
+    "text": "Problem with deterministic solution: u(xy)= sin(2x)cos(2y)(8^2) and additive noise (xy)=5\n\n\n\n"
 },
 
 {
@@ -749,7 +749,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a FEM Problem",
     "title": "DifferentialEquations.prob_poisson_birthdeathsystem",
     "category": "Constant",
-    "text": "Example problem which starts with 1/2 and solves the system f(u)=1-u2 and f(v)=1-v\n\n\n\n"
+    "text": "Nonlinear Poisson equation with f(u)=1-u2 and f(v)=1-v and initial condition homogenous 1/2. Corresponds to the steady state of a humogenous reaction-diffusion equation with the same f.\n\n\n\n"
 },
 
 {
@@ -757,7 +757,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a FEM Problem",
     "title": "DifferentialEquations.prob_poisson_wave",
     "category": "Constant",
-    "text": "Example problem with solution: u(xy)= sin(2*x)*cos(2*y)(8*)\n\n\n\n"
+    "text": "Problem defined by the solution: u(xy)= sin(2x)cos(2y)(8^2)\n\n\n\n"
 },
 
 {
@@ -765,7 +765,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a FEM Problem",
     "title": "DifferentialEquations.prob_poisson_birthdeath",
     "category": "Constant",
-    "text": "Example problem for nonlinear Poisson equation. Uses f(u)=1-u2.\n\n\n\n"
+    "text": "Nonlinear Poisson equation with f(u)=1-u2. Corresponds to the steady state of a humogenous reaction-diffusion equation with the same f.\n\n\n\n"
 },
 
 {
@@ -781,7 +781,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a FEM Problem",
     "title": "DifferentialEquations.prob_femheat_birthdeathsystem",
     "category": "Constant",
-    "text": "Example problem which starts with 1/2 and solves the system f(u)=1-u2 and f(v)=1-v\n\n\n\n"
+    "text": "Homogenous reaction-diffusion which starts at 1/2 and solves the system f(u)=1-u2 and f(v)=1-v\n\n\n\n"
 },
 
 {
@@ -789,7 +789,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a FEM Problem",
     "title": "DifferentialEquations.prob_femheat_birthdeathinteractingsystem",
     "category": "Constant",
-    "text": "Example problem which starts with 1/2 and solves the system f(u)=1-u2 and f(v)=5u-v\n\n\n\n"
+    "text": "Homogenous reaction-diffusion which starts with 1/2 and solves the system f(u)=1-u2 and f(v)=5u-v\n\n\n\n"
 },
 
 {
@@ -797,7 +797,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a FEM Problem",
     "title": "DifferentialEquations.prob_femheat_diffuse",
     "category": "Constant",
-    "text": "Example problem with solution: u(xyt)=exp(-10((x-5)^2 + (y-5)^2 )-t)\n\n\n\n"
+    "text": "Example problem defined by the solution:\n\nu(xyt)=exp(-10((x-frac12)^2 + (y-frac12)^2 )-t)\n\nThis is a Gaussian centered at (frac12frac12) which diffuses over time.\n\n\n\n"
 },
 
 {
@@ -805,7 +805,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a FEM Problem",
     "title": "DifferentialEquations.prob_femheat_stochasticbirthdeath",
     "category": "Constant",
-    "text": "Example problem which starts with 0 and solves with f(u)=1-u2 with noise (u)=10u^2\n\n\n\n"
+    "text": "Homogenous stochastic reaction-diffusion problem which starts with 0 and solves with f(u)=1-u2 with noise (u)=10u^2\n\n\n\n"
 },
 
 {
@@ -813,7 +813,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a FEM Problem",
     "title": "DifferentialEquations.prob_femheat_moving",
     "category": "Constant",
-    "text": "Example problem with solution: u(xyt)=01*(1-exp(-100*(t-05)^2))*exp(-25((x-t+05)^2 + (y-t+05)^2))\n\n\n\n"
+    "text": "Example problem defined by the solution:\n\nu(xyt)=frac110(1-exp(-100(t-frac12)^2))exp(-25((x-t+05)^2 + (y-t+05)^2))\n\nThis will have a mound which moves across the screen. Good animation test.\n\n\n\n"
 },
 
 {
@@ -821,7 +821,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a FEM Problem",
     "title": "DifferentialEquations.heatProblemExample_gierermeinhardt",
     "category": "Function",
-    "text": "Example problem which solves the Gierer-Meinhardt equations wtih quasi-random initial perturbations.\n\n\n\n"
+    "text": "heatProblemExample_gierermeinhardt(;a=1,α=1,D=[0.01 1.0],ubar=1,vbar=0,β=10,startNoise=0.01)\n\nThe Gierer-Meinhardt equations wtih quasi-random initial perturbations.\n\nbeginalign\nu_t = fracauv^2 + baru -u \nv_t = au^2 + barv - v\nendalign\n\nThe equation starts at the steady state\n\nbeginalign\nu_ss = fracbaru+ \nv_ss = frac u_ss^2\nendalign\n\nwith a bit of noise.\n\n\n\n"
 },
 
 {
@@ -829,7 +829,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a FEM Problem",
     "title": "DifferentialEquations.heatProblemExample_grayscott",
     "category": "Function",
-    "text": "Example problem which solves the Gray-Scott equations with quasi-random initial conditions\n\n\n\n"
+    "text": "heatProblemExample_grayscott(;ρ=.03,k=.062,D=[1e-3 .5e-3])\n\nThe Gray-Scott equations with quasi-random initial conditions. The reaction equations are given by:\n\nbeginalign\nu_t = uv^2 + (1-v) \nv_t = uv^2 - (+k)v\nendalign\n\n\n\n"
 },
 
 {
@@ -837,7 +837,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a FEM Problem",
     "title": "DifferentialEquations.prob_femheat_pure",
     "category": "Constant",
-    "text": "Example problem which starts with 1 at (0.5,0.5) and solves with f=gD=0\n\n\n\n"
+    "text": "Example problem which starts with a Dirac δ cenetered at (0.5,0.5) and solves with f=gD=0. This gives the Green's function solution.\n\n\n\n"
 },
 
 {
@@ -845,7 +845,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a FEM Problem",
     "title": "DifferentialEquations.prob_femheat_diffusionconstants",
     "category": "Constant",
-    "text": "Example problem which solves the homogeneous Heat equation with all mass starting at (1/2,1/2) with two different diffusion constants.\n\n\n\n"
+    "text": "Example problem which solves the homogeneous Heat equation with all mass starting at (1/2,1/2) with two different diffusion constants, D=001 and D=0001. Good animation test.\n\n\n\n"
 },
 
 {
@@ -853,7 +853,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a FEM Problem",
     "title": "DifferentialEquations.prob_femheat_birthdeath",
     "category": "Constant",
-    "text": "Example problem which starts with 0 and solves with f(u)=1-u2\n\n\n\n"
+    "text": "Homogenous reaction-diffusion problem which starts with 0 and solves with f(u)=1-u2\n\n\n\n"
 },
 
 {
@@ -862,22 +862,6 @@ var documenterSearchIndex = {"docs": [
     "title": "Heat Equation",
     "category": "section",
     "text": "DifferentialEquations.prob_femheat_birthdeathsystem\nDifferentialEquations.prob_femheat_birthdeathinteractingsystem\nDifferentialEquations.prob_femheat_diffuse\nDifferentialEquations.prob_femheat_stochasticbirthdeath\nDifferentialEquations.prob_femheat_moving\nDifferentialEquations.heatProblemExample_gierermeinhardt\nDifferentialEquations.heatProblemExample_grayscott\nDifferentialEquations.prob_femheat_pure\nDifferentialEquations.prob_femheat_diffusionconstants\nDifferentialEquations.prob_femheat_birthdeath"
-},
-
-{
-    "location": "man/FEMProblem.html#DifferentialEquations.DEProblem",
-    "page": "Defining a FEM Problem",
-    "title": "DifferentialEquations.DEProblem",
-    "category": "Type",
-    "text": "PdeProblem: Defines differential equation problems via its internal functions\n\n\n\n"
-},
-
-{
-    "location": "man/FEMProblem.html#Related-Functions-1",
-    "page": "Defining a FEM Problem",
-    "title": "Related Functions",
-    "category": "section",
-    "text": "DifferentialEquations.DEProblem"
 },
 
 {
@@ -1269,7 +1253,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Function Definition Macros",
     "title": "Function Definition Macros",
     "category": "section",
-    "text": "DifferentialEquations.jl provides a set of macros for more easily and legibly defining your differential equations. It exploits the standard notation for mathematically writing differential equations and the notation for \"punching differential equations into the computer\"; effectively doing the translation step for you. This is best shown by an example. Say we want to solve the ROBER model. Using the @ode_define macro, we can do this by writing:f = @ode_define begin\n  dy₁ = -k₁*y₁+k₃*y₂*y₃\n  dy₂ =  k₁*y₁-k₂*y₂^2-k₃*y₂*y₃\n  dy₃ =  k₂*y₂^2\nend k₁=>0.04 k₂=>3e7 k₃=>1e4This looks just like psudocode! The macro will expand this to the \"standard form\", i.e. the ugly computer form:f = (t,u,du) -> begin\n  du[1] = -0.04*u[1] + 1e4*u[2]*u[3]\n  du[2] = 0.04*u[1] - 3e7*u[2]^2 - 1e4*u[2]*u[3]\n  du[3] = 3e7*u[2]^2\nendThe other macro which is currently provided is the @fem_define macro. This macro is for parsing and writing FEM functions. For example, in the FEM methods you have to use x[:,1] instead of x and x[:,2] instead of y. The macro will automatically do this replacement, along with adding in parameters. Since FEM functions are more general, we also have to give it the function signature. Using the macro looks like this:f  = @fem_define((x),(),begin\n  sin(α.*x).*cos(α.*y)\nend,α=>2π)\ngD = @fem_define((x),(),begin\n  sin(α.*x).*cos(α.*y)/β\nend,α=>2π,β=>8π*π)This is equivalent to the definitionf(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])\ngD(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])/(8π*π)The true power comes in when dealing with nonlinear equations. The second argument, which we skipped over as (), is for listing the variables you wish to define the equation by. Mathematically you may be using u,v,w, etc., but for array-based algorithms you need to use u[:,1],u[:,2],etc. To avoid obfuscated code, the @fem_define macro does this conversion. For example:l = @fem_define((t,x,u),(u,v),begin\n  [ones(length(u))-α*u ones(length(v))-v]\nend,α=>0.5)says there are two equations, one for u (ones(length(u))-α*u) and one for v (ones(length(v))-v). This expands to the equationh = (t,x,u)  -> [ones(size(x,1))-.5u[:,1]   ones(size(x,1))-u[:,2]]When you have 10+ variables, using @fem_define leads to code which is much easier to read!"
+    "text": "DifferentialEquations.jl provides a set of macros for more easily and legibly defining your differential equations. It exploits the standard notation for mathematically writing differential equations and the notation for \"punching differential equations into the computer\"; effectively doing the translation step for you. This is best shown by an example. Say we want to solve the ROBER model. Using the @ode_define macro, we can do this by writing:f = @ode_define begin\n  dy₁ = -k₁*y₁+k₃*y₂*y₃\n  dy₂ =  k₁*y₁-k₂*y₂^2-k₃*y₂*y₃\n  dy₃ =  k₂*y₂^2\nend k₁=>0.04 k₂=>3e7 k₃=>1e4This looks just like psudocode! The macro will expand this to the \"standard form\", i.e. the ugly computer form:f = (t,u,du) -> begin\n  du[1] = -0.04*u[1] + 1e4*u[2]*u[3]\n  du[2] = 0.04*u[1] - 3e7*u[2]^2 - 1e4*u[2]*u[3]\n  du[3] = 3e7*u[2]^2\nendThe other macro which is currently provided is the @fem_define macro. This macro is for parsing and writing FEM functions. For example, in the FEM methods you have to use x[:,1] instead of x and x[:,2] instead of y. The macro will automatically do this replacement, along with adding in parameters. Since FEM functions are more general, we also have to give it the function signature. Using the macro looks like this:f  = @fem_define((x),(),begin\n  sin(α.*x).*cos(α.*y)\nend,α=>2π)\ngD = @fem_define((x),(),begin\n  sin(α.*x).*cos(α.*y)/β\nend,α=>2π,β=>8π*π)This is equivalent to the definitionf(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])\ngD(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])/(8π*π)The true power comes in when dealing with nonlinear equations. The second argument, which we skipped over as (), is for listing the variables you wish to define the equation by. Mathematically you may be using u,v,w, etc., but for array-based algorithms you need to use u[:,1],u[:,2],etc. To avoid obfuscated code, the @fem_define macro does this conversion. For example:l = @fem_define((t,x,u),(u,v),begin\n  [ones(length(u))-α*u ones(length(v))-v]\nend,α=>0.5)says there are two equations, one for u: (ones(length(u))-α*u) and one for v: (ones(length(v))-v). This expands to the equationh = (t,x,u)  -> [ones(size(x,1))-.5u[:,1]   ones(size(x,1))-u[:,2]]When you have 10+ variables, using @fem_define leads to code which is much easier to read!"
 },
 
 {
@@ -1469,7 +1453,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Contributor's Guide",
     "title": "Developing New Solver Algorithms",
     "category": "section",
-    "text": "The easiest way to get started would be to add new solver algorithms. This is a pretty simple task as there are tools which put you right into the \"hot loop\". For example, take a look at the ODE solver code. The mode solve(::ODEProblem,::AbstractArray) is glue code to a bunch of solver algorithms. The algorithms which are coded in DifferentialEquations.jl can be found in ode_integrators.jl. For example, take a look at the Midpoint method's implementation:function ode_midpoint(f::Function,u::AbstractArray,t,Δt,T,iter,\n                      maxiters,timeseries,ts,timeseries_steps,save_timeseries,adaptive,progressbar)\n  halfΔt = Δt/2\n  utilde = similar(u)\n  while t < T\n    @ode_loopheader\n    utilde[:] = u+halfΔt.*f(u,t)\n    u = u + Δt.*f(utilde,t+halfΔt)\n    @ode_loopfooter\n  end\n  return u,t,timeseries,ts\nendThe parts in the signature are the items you have available. Most are self-explanatory (they are from the ODE problem). The extra are for parts of the header and footer for exiting at max iterations, and plugging into the Juno progressbar. These are done in the @ode_loopheader and @ode_loopfooter macros, which are defined using the @def macro (they essentially copy-paste the code from the line which says @def ode_loopheader begin ... end). Note that the loopfooter code takes care of the code for doing the adaptive timestepping. All that is required for the adaptivity is that the algorithm computes an error estimate EEst each time, save the value utmp to be what will replace u if the step is not rejected, and add the algorithm's symbol is added to the dictionary ODE_DIFFERENTIALEQUATIONSJL_ADAPTIVEALGS in ode_constants.jl. If implicit solving is needed (via NLsolve), add the algorithm's symbol to DIFFERENTIALEQUATIONSJL_IMPLICITALGS and the conditional dependency will be supplied. Note that you may need more function arguments. Use another method as a template.When the solver is completed, add a call to the solver in the glue code solve(::ODEProblem,::AbstractArray) (you will see all the others), add the symbol for the algorithm to DIFFERENTIALEQUATIONSJL_ALGORITHMS, and the order to DIFFERENTIALEQUATIONSJL_ORDERS. It's that quick! Lastly, add your method to the convergence tests in the appropriate /test file.  Feel free to implement any interesting or educational algorithm: they don't have to be the fastest and it is always is useful to have such algorithms (like Simpson's method) available for demonstration purposes.Adding algorithms to the other problems is very similar."
+    "text": "The easiest way to get started would be to add new solver algorithms. This is a pretty simple task as there are tools which put you right into the \"hot loop\". For example, take a look at the ODE solver code. The mode solve(::ODEProblem,::AbstractArray) is glue code to a bunch of solver algorithms. The algorithms which are coded in DifferentialEquations.jl can be found in ode_integrators.jl. For example, take a look at the Midpoint method's implementation:function ode_solve{uType<:Number,uEltype<:Number,N,tType<:Number,uEltypeNoUnits<:Number,rateType<:Number}(integrator::ODEIntegrator{:Midpoint,uType,uEltype,N,tType,uEltypeNoUnits,rateType})\n  @ode_preamble\n  halfΔt::tType = Δt/2\n  @inbounds for T in Ts\n    while t < T\n      @ode_loopheader\n      u = u + Δt.*f(t+halfΔt,u+halfΔt.*f(t,u))\n      @ode_numberloopfooter\n    end\n  end\n  return u,t,timeseries,ts\nendThe available items are all unloaded from the integrator in the @ode_preamble. @ode_loopheader and @ode_loopfooter macros are for exiting at max iterations, and plugging into the Juno progressbar. These are all defined using the @def macro (they essentially copy-paste the code from the line which says @def ode_loopheader begin ... end). Note that the loopfooter code takes care of the code for doing the adaptive timestepping. All that is required for the adaptivity is that the algorithm computes an error estimate EEst each time, save the value utmp to be what will replace u if the step is not rejected, and add the algorithm's symbol is added to the dictionary ODE_DIFFERENTIALEQUATIONSJL_ADAPTIVEALGS in ode_constants.jl. If implicit solving is needed (via NLsolve), add the algorithm's symbol to DIFFERENTIALEQUATIONSJL_IMPLICITALGS and the conditional dependency will be supplied. Note that you may need more function arguments. Use another method as a template.When the solver is completed, add a call to the solver in the glue code solve(::ODEProblem,::AbstractArray) (you will see all the others), add the symbol for the algorithm to DIFFERENTIALEQUATIONSJL_ALGORITHMS, and the order to DIFFERENTIALEQUATIONSJL_ORDERS. It's that quick! Lastly, add your method to the convergence tests in the appropriate /test file.  Feel free to implement any interesting or educational algorithm: they don't have to be the fastest and it is always is useful to have such algorithms (like Simpson's method) available for demonstration purposes.Adding algorithms to the other problems is very similar."
+},
+
+{
+    "location": "internals/contributors_guide.html#Extras-1",
+    "page": "Contributor's Guide",
+    "title": "Extras",
+    "category": "section",
+    "text": "If the method is a FSAL method then it needs to be set it in DIFFERENTIALEQUATIONSJL_FSALALGS and fsalfirst should be defined before the loop, with fsallast what's pushed up to fsalfirst upon a successful step. See :DP5 for an example.It's usually wise to dispatch onto Number separately since that uses f(t,u) instead of f(t,u,du). The dispatch is chosen by setting the uType and rateType, usually to either <:Number or <:AbstractArray (though they should be the same).If tests fail due to units (i.e. SIUnits), don't worry. I would be willing to fix that up. To do so, you have to make sure you keep separate your rateTypes and your uTypes since the rates from f will have units of u but divided by a unit of time. If you simply try to write these into u, the units part will fail (normally you have to multiply by a t)."
 },
 
 {
@@ -1493,7 +1485,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Contributor's Guide",
     "title": "Other Help",
     "category": "section",
-    "text": "There's always more to be. Improved plot recipes and new series recipes are always nice to add more default plots. It is always helpful to have benchmarks between different algorithms to see \"which is best\". Adding examples IJulia notebooks to /examples/ is a good way to share knowledge about DifferentialEquations.jl. Also, please feel free to comb through the solvers and look for ways to make them more efficient. Lastly, the documentation could always use improvements. If you have any questions on how to help, just ask them in the Gitter!"
+    "text": "There's always more to be. Improved plot recipes and new series recipes are always nice to add more default plots. It is always helpful to have benchmarks between different algorithms to see \"which is best\". Adding examples IJulia notebooks to examples/ is a good way to share knowledge about DifferentialEquations.jl. Also, please feel free to comb through the solvers and look for ways to make them more efficient. Lastly, the documentation could always use improvements. If you have any questions on how to help, just ask them in the Gitter!"
 },
 
 {
@@ -1573,7 +1565,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Internal Finite Element Tools",
     "title": "DifferentialEquations.assemblematrix",
     "category": "Function",
-    "text": "assemblematrix(node,elem;lumpflag=false,K=[])\n\nAssembles the stiffness matrix A as an approximation to Δ on the finite element mesh (node,elem). Also generates the mass matrix M. If lumpflag=true, then the mass matrix is lumped resulting in a diagonal mass matrix. Specify a diffusion constant along the nodes via K.\n\nReturns\n\nA = Stiffness Matrix M = Mass Matrix area = A vector of the calculated areas for each element.\n\n\n\nassemblematrix(FEMmesh::FEMmesh;lumpflag=false,K=[])\n\nAssembles the stiffness matrix A as an approximation to Δ on the finite element mesh (node,elem). Also generates the mass matrix M. If lumpflag=true, then the mass matrix is lumped resulting in a diagonal mass matrix. Specify a diffusion constant along the nodes via K.\n\nReturns\n\nA = Stiffness Matrix M = Mass Matrix area = A vector of the calculated areas for each element.\n\n\n\n"
+    "text": "assemblematrix(node,elem;lumpflag=false,K=[])\n\nAssembles the stiffness matrix A as an approximation to Δ on the finite element mesh (node,elem). Also generates the mass matrix M. If lumpflag=true, then the mass matrix is lumped resulting in a diagonal mass matrix. Specify a diffusion constant along the nodes via K.\n\nReturns\n\nA = Stiffness Matrix\nM = Mass Matrix\narea = A vector of the calculated areas for each element.\n\n\n\nassemblematrix(FEMmesh::FEMmesh;lumpflag=false,K=[])\n\nAssembles the stiffness matrix A as an approximation to Δ on the finite element mesh (node,elem). Also generates the mass matrix M. If lumpflag=true, then the mass matrix is lumped resulting in a diagonal mass matrix. Specify a diffusion constant along the nodes via K.\n\nReturns\n\nA = Stiffness Matrix\nM = Mass Matrix\narea = A vector of the calculated areas for each element.\n\n\n\n"
 },
 
 {
@@ -1649,11 +1641,19 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "internals/extras.html#DifferentialEquations.DEProblem",
+    "page": "Extra Functions",
+    "title": "DifferentialEquations.DEProblem",
+    "category": "Type",
+    "text": "PdeProblem: Defines differential equation problems via its internal functions\n\n\n\n"
+},
+
+{
     "location": "internals/extras.html#Extra-Functions-1",
     "page": "Extra Functions",
     "title": "Extra Functions",
     "category": "section",
-    "text": "DifferentialEquations.getNoise\nDifferentialEquations.numparameters\nDifferentialEquations.Tableau"
+    "text": "DifferentialEquations.getNoise\nDifferentialEquations.numparameters\nDifferentialEquations.Tableau\nDifferentialEquations.DEProblem"
 },
 
 {
@@ -1697,6 +1697,14 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "internals/solver_helpers.html#ODE-Tableaus-1",
+    "page": "Solver Helpers",
+    "title": "ODE Tableaus",
+    "category": "section",
+    "text": ""
+},
+
+{
     "location": "internals/solver_helpers.html#Base.length-Tuple{DifferentialEquations.ODERKTableau}",
     "page": "Solver Helpers",
     "title": "Base.length",
@@ -1709,7 +1717,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Solver Helpers",
     "title": "DifferentialEquations.stability_region",
     "category": "Function",
-    "text": "stability_region(z,tab::ODERKTableau)\n\nCalculates the stability function from the tableau at z. Stable if <1.\n\nr(z) = racdet(I-zA+zeb^T)det(I-zA)\n\n\n\n"
+    "text": "stability_region(z,tab::ODERKTableau)\n\nCalculates the stability function from the tableau at z. Stable if <1.\n\nr(z) = fracdet(I-zA+zeb^T)det(I-zA)\n\n\n\n"
 },
 
 {
@@ -1745,6 +1753,94 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "internals/solver_helpers.html#Tableau-Methods-1",
+    "page": "Solver Helpers",
+    "title": "Tableau Methods",
+    "category": "section",
+    "text": "Base.length(::DifferentialEquations.ODERKTableau)\nDifferentialEquations.stability_region\nDifferentialEquations.ExplicitRKTableau\nDifferentialEquations.ImplicitRKTableau\nDifferentialEquations.ODERKTableau\nDifferentialEquations.ODE_DEFAULT_TABLEAU"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructEuler",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructEuler",
+    "category": "Function",
+    "text": "Euler's method.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructRalston",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructRalston",
+    "category": "Function",
+    "text": "Ralston's Order 2 method.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructHeun",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructHeun",
+    "category": "Function",
+    "text": "Heun's Order 2 method.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructKutta3",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructKutta3",
+    "category": "Function",
+    "text": "Kutta's Order 3 method.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructBS3",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructBS3",
+    "category": "Function",
+    "text": "constructBogakiShampine3()\n\nConstructs the tableau object for the Bogakai-Shampine Order 2/3 method.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructBogakiShampine3",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructBogakiShampine3",
+    "category": "Function",
+    "text": "constructBogakiShampine3()\n\nConstructs the tableau object for the Bogakai-Shampine Order 2/3 method.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructRK4",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructRK4",
+    "category": "Function",
+    "text": "Classic RK4 method.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructRK438Rule",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructRK438Rule",
+    "category": "Function",
+    "text": "Classic RK4 3/8's rule method.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructRKF4",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructRKF4",
+    "category": "Function",
+    "text": "Runge-Kutta-Fehberg Order 4/3\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructRKF5",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructRKF5",
+    "category": "Function",
+    "text": "Runge-Kutta-Fehlberg Order 4/5 method.\n\n\n\n"
+},
+
+{
     "location": "internals/solver_helpers.html#DifferentialEquations.constructCashKarp",
     "page": "Solver Helpers",
     "title": "DifferentialEquations.constructCashKarp",
@@ -1753,91 +1849,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructRalston",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructRalston",
-    "category": "Function",
-    "text": "constructRalston()\n\nConstructs the tableau object for Ralston's Order 2 method.\n\n\n\n"
-},
-
-{
     "location": "internals/solver_helpers.html#DifferentialEquations.constructDormandPrince",
     "page": "Solver Helpers",
     "title": "DifferentialEquations.constructDormandPrince",
     "category": "Function",
     "text": "constructDormandPrince()\n\nConstructs the tableau object for the Dormand-Prince Order 4/5 method.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructDormandPrince8",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructDormandPrince8",
-    "category": "Function",
-    "text": "constructDormandPrice8()\n\nConstructs the tableau object for the Dormand-Prince Order 6/8 method.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructRKF8",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructRKF8",
-    "category": "Function",
-    "text": "constructRKF8()\n\nConstructs the tableau object for the Runge-Kutta-Fehlberg Order 7/8 method.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructRKF5",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructRKF5",
-    "category": "Function",
-    "text": "constructRKF5()\n\nConstructs the tableau object for the Runge-Kutta-Fehlberg Order 4/5 method.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructKutta3",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructKutta3",
-    "category": "Function",
-    "text": "constructKutta3()\n\nConstructs the tableau object for Kutta's Order 3 method.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructFeagin14Tableau",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructFeagin14Tableau",
-    "category": "Function",
-    "text": "Tableau form of Feagin14\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructTanakaKasugaYamashitaYazaki6A",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructTanakaKasugaYamashitaYazaki6A",
-    "category": "Function",
-    "text": "TanakaKasugaYamashitaYazaki Order 6 A\n\nOn the Optimization of Some Eight-stage Sixth-order Explicit Runge-Kutta Method,  by M. Tanaka, K. Kasuga, S. Yamashita and H. Yazaki,  Journal of the Information Processing Society of Japan, Vol. 34, No. 1 (1993), pages 62 to 74.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructVernerEfficient7",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructVernerEfficient7",
-    "category": "Function",
-    "text": "From Verner's website\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructTsitouras92",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructTsitouras92",
-    "category": "Function",
-    "text": "Optimized explicit Runge-Kutta pairs of order 9(8), by Ch. Tsitouras,  Applied Numerical Mathematics, 38 (2001) 123-134.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructGL2",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructGL2",
-    "category": "Function",
-    "text": "constructGL2()\n\nConstructs the tableau object for Gauss-Legendre Order 2.\n\n\n\n"
 },
 
 {
@@ -1857,51 +1873,19 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructPapakostasPapaGeorgiou52",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructPapakostasPapaGeorgiou52",
+    "category": "Function",
+    "text": "S.N. Papakostas and G. PapaGeorgiou less stable lower error  Strictly better than DP5\n\nA Family of Fifth-order Runge-Kutta Pairs, by S.N. Papakostas and G. PapaGeorgiou,  Mathematics of Computation,Volume 65, Number 215, July 1996, Pages 1165-1181.\n\n\n\n"
+},
+
+{
     "location": "internals/solver_helpers.html#DifferentialEquations.constructTsitouras5",
     "page": "Solver Helpers",
     "title": "DifferentialEquations.constructTsitouras5",
     "category": "Function",
     "text": "Runge–Kutta pairs of orders 5(4) using the minimal set of simplifying assumptions,  by Ch. Tsitouras, TEI of Chalkis, Dept. of Applied Sciences, GR34400, Psahna, Greece.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructGL4",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructGL4",
-    "category": "Function",
-    "text": "constructGL4()\n\nConstructs the tableau object for Gauss-Legendre Order 4.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructButcher6",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructButcher6",
-    "category": "Function",
-    "text": "Butcher's First Order 6 method\n\nOn Runge-Kutta Processes of High Order, by J. C. Butcher,  Journal of the Australian Mathematical Society, Vol. 4, (1964), pages 179 to 194\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructVernerRobust6",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructVernerRobust6",
-    "category": "Function",
-    "text": "From Verner's Website\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructFeagin10",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructFeagin10",
-    "category": "Function",
-    "text": "constructFeagin10\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructRK438Rule",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructRK438Rule",
-    "category": "Function",
-    "text": "constructRK438Rule()\n\nConstructs the tableau object for the classic RK4 3/8's rule method.\n\n\n\n"
 },
 
 {
@@ -1913,43 +1897,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructHeun",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructLutherKonen52",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructHeun",
+    "title": "DifferentialEquations.constructLutherKonen52",
     "category": "Function",
-    "text": "constructHeun()\n\nConstructs the tableau object for Heun's Order 2 method.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructFeagin10Tableau",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructFeagin10Tableau",
-    "category": "Function",
-    "text": "Feagin10 in Tableau form\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructOno10",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructOno10",
-    "category": "Function",
-    "text": "Ono10\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructOno12",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructOno12",
-    "category": "Function",
-    "text": "On the 25 stage 12th order explicit Runge-Kutta method, by Hiroshi Ono. Transactions of the Japan Society for Industrial and applied Mathematics, Vol. 6, No. 3, (2006) pages 177 to 186\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructCooperVerner8",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructCooperVerner8",
-    "category": "Function",
-    "text": "Some Explicit Runge-Kutta Methods of High Order, by G. J. Cooper and J. H. Verner,  SIAM Journal on Numerical Analysis, Vol. 9, No. 3, (September 1972), pages 389 to 405\n\n\n\n"
+    "text": "Luther and Konen's Second Order 5 Some Fifth-Order Classical Runge Kutta Formulas, H.A.Luther and H.P.Konen,  Siam Review, Vol. 3, No. 7, (Oct., 1965) pages 551-558.\n\n\n\n"
 },
 
 {
@@ -1958,46 +1910,6 @@ var documenterSearchIndex = {"docs": [
     "title": "DifferentialEquations.constructLutherKonen53",
     "category": "Function",
     "text": "Luther and Konen's Third Order 5 Some Fifth-Order Classical Runge Kutta Formulas, H.A.Luther and H.P.Konen,  Siam Review, Vol. 3, No. 7, (Oct., 1965) pages 551-558.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructFeagin12",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructFeagin12",
-    "category": "Function",
-    "text": "constructFeagin12\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructClassicVerner7",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructClassicVerner7",
-    "category": "Function",
-    "text": "EXPLICIT RUNGE-KUTFA METHODS WITH ESTIMATES OF THE LOCAL TRUNCATION ERROR\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructHuta6",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructHuta6",
-    "category": "Function",
-    "text": "Anton Hutas First Order 6 method\n\nUne amélioration de la méthode de Runge-Kutta-Nyström pour la résolution numérique des équations différentielles du premièr ordre, by Anton Huta, Acta Fac. Nat. Univ. Comenian Math., Vol. 1, pages 201-224 (1956).\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructVerner6",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructVerner6",
-    "category": "Function",
-    "text": "Verner Order 5/6 method\n\nA Contrast of a New RK56 pair with DP56, by Jim Verner,  Department of Mathematics. Simon Fraser University, Burnaby, Canada, 2006.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructSharp9",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructSharp9",
-    "category": "Function",
-    "text": "Journal of Applied Mathematics & Decision Sciences, 4(2), 183-192 (2000),  \"High order explicit Runge-Kutta pairs for ephemerides of the Solar System and the Moon\".\n\n\n\n"
 },
 
 {
@@ -2017,91 +1929,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructPapakostasPapaGeorgiou52",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructPapakostasPapaGeorgiou52",
-    "category": "Function",
-    "text": "S.N. Papakostas and G. PapaGeorgiou less stable lower error  Strictly better than DP5\n\nA Family of Fifth-order Runge-Kutta Pairs, by S.N. Papakostas and G. PapaGeorgiou,  Mathematics of Computation,Volume 65, Number 215, July 1996, Pages 1165-1181.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructButcher63",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructButcher63",
-    "category": "Function",
-    "text": "Butcher's Third Order 6\n\nOn Runge-Kutta Processes of High Order, by J. C. Butcher,  Journal of the Australian Mathematical Society, Vol. 4, (1964), pages 179 to 194\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructBS3",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructBS3",
-    "category": "Function",
-    "text": "constructBogakiShampine3()\n\nConstructs the tableau object for the Bogakai-Shampine Order 2/3 method.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructTsitourasPapakostas8",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructTsitourasPapakostas8",
-    "category": "Function",
-    "text": "Cheap Error Estimation for Runge-Kutta methods, by Ch. Tsitouras and S.N. Papakostas,  Siam Journal on Scientific Computing, Vol. 20, Issue 6, Nov 1999.\n\n\n\n"
-},
-
-{
     "location": "internals/solver_helpers.html#DifferentialEquations.constructSharpSmart5",
     "page": "Solver Helpers",
     "title": "DifferentialEquations.constructSharpSmart5",
     "category": "Function",
     "text": "Explicit Runge-Kutta Pairs with One More Derivative Evaluation than the Minimum, by P.W.Sharp and E.Smart,  Siam Journal of Scientific Computing, Vol. 14, No. 2, pages. 338-348, March 1993.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructTanakaKasugaYamashitaYazaki6C",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructTanakaKasugaYamashitaYazaki6C",
-    "category": "Function",
-    "text": "constructTanakaKasugaYamashitaYazaki Order 6 C\n\nOn the Optimization of Some Eight-stage Sixth-order Explicit Runge-Kutta Method,  by M. Tanaka, K. Kasuga, S. Yamashita and H. Yazaki,  Journal of the Information Processing Society of Japan, Vol. 34, No. 1 (1993), pages 62 to 74.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructTanakaYamashitaEfficient7",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructTanakaYamashitaEfficient7",
-    "category": "Function",
-    "text": "On the Optimization of Some Nine-Stage Seventh-order Runge-Kutta Method, by M. Tanaka, S. Muramatsu and S. Yamashita, Information Processing Society of Japan, Vol. 33, No. 12 (1992) pages 1512-1526.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructGL6",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructGL6",
-    "category": "Function",
-    "text": "constructGL6()\n\nConstructs the tableau object for Gauss-Legendre Order 6.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructTanakaKasugaYamashitaYazaki6D",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructTanakaKasugaYamashitaYazaki6D",
-    "category": "Function",
-    "text": "constructTanakaKasugaYamashitaYazaki Order 6 D\n\nOn the Optimization of Some Eight-stage Sixth-order Explicit Runge-Kutta Method,  by M. Tanaka, K. Kasuga, S. Yamashita and H. Yazaki,  Journal of the Information Processing Society of Japan, Vol. 34, No. 1 (1993), pages 62 to 74.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructChummund6",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructChummund6",
-    "category": "Function",
-    "text": "Chummund's First Order 6 method\n\nA three-dimensional family of seven-step Runge-Kutta methods of order 6, by G. M. Chammud (Hammud), Numerical Methods and programming, 2001, Vol.2, 2001, pages 159-166 (Advanced Computing Scientific journal published by the Research Computing Center of the Lomonosov Moscow State Univeristy)\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructFeagin12Tableau",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructFeagin12Tableau",
-    "category": "Function",
-    "text": "Tableau form of Feagin12\n\n\n\n"
 },
 
 {
@@ -2113,19 +1945,51 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructVernerEfficient9",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructCassity5",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructVernerEfficient9",
+    "title": "DifferentialEquations.constructCassity5",
     "category": "Function",
-    "text": "From Verner's Webiste\n\n\n\n"
+    "text": "Cassity's Order 5 method\n\n\n\n"
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructDormandPrince6",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructButcher6",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructDormandPrince6",
+    "title": "DifferentialEquations.constructButcher6",
     "category": "Function",
-    "text": "Dormand-Prince Order 5//6 method\n\nP.J. Prince and J. R. Dormand, High order embedded Runge-Kutta formulae, Journal of Computational and Applied Mathematics . 7 (1981), pp. 67-75.\n\n\n\n"
+    "text": "Butcher's First Order 6 method\n\nOn Runge-Kutta Processes of High Order, by J. C. Butcher,  Journal of the Australian Mathematical Society, Vol. 4, (1964), pages 179 to 194\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructButcher62",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructButcher62",
+    "category": "Function",
+    "text": "Butcher's Second Order 6 method\n\nOn Runge-Kutta Processes of High Order, by J. C. Butcher,  Journal of the Australian Mathematical Society, Vol. 4, (1964), pages 179 to 194\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructButcher63",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructButcher63",
+    "category": "Function",
+    "text": "Butcher's Third Order 6\n\nOn Runge-Kutta Processes of High Order, by J. C. Butcher,  Journal of the Australian Mathematical Society, Vol. 4, (1964), pages 179 to 194\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructVernerRobust6",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructVernerRobust6",
+    "category": "Function",
+    "text": "From Verner's Website\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructTanakaKasugaYamashitaYazaki6A",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructTanakaKasugaYamashitaYazaki6A",
+    "category": "Function",
+    "text": "TanakaKasugaYamashitaYazaki Order 6 A\n\nOn the Optimization of Some Eight-stage Sixth-order Explicit Runge-Kutta Method,  by M. Tanaka, K. Kasuga, S. Yamashita and H. Yazaki,  Journal of the Information Processing Society of Japan, Vol. 34, No. 1 (1993), pages 62 to 74.\n\n\n\n"
 },
 
 {
@@ -2137,59 +2001,27 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructLutherKonen52",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructTanakaKasugaYamashitaYazaki6C",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructLutherKonen52",
+    "title": "DifferentialEquations.constructTanakaKasugaYamashitaYazaki6C",
     "category": "Function",
-    "text": "Luther and Konen's Second Order 5 Some Fifth-Order Classical Runge Kutta Formulas, H.A.Luther and H.P.Konen,  Siam Review, Vol. 3, No. 7, (Oct., 1965) pages 551-558.\n\n\n\n"
+    "text": "constructTanakaKasugaYamashitaYazaki Order 6 C\n\nOn the Optimization of Some Eight-stage Sixth-order Explicit Runge-Kutta Method,  by M. Tanaka, K. Kasuga, S. Yamashita and H. Yazaki,  Journal of the Information Processing Society of Japan, Vol. 34, No. 1 (1993), pages 62 to 74.\n\n\n\n"
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructSharpSmart7",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructTanakaKasugaYamashitaYazaki6D",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructSharpSmart7",
+    "title": "DifferentialEquations.constructTanakaKasugaYamashitaYazaki6D",
     "category": "Function",
-    "text": "Explicit Runge-Kutta Pairs with One More Derivative Evaluation than the Minimum, by P.W.Sharp and E.Smart,  Siam Journal of Scientific Computing, Vol. 14, No. 2, pages. 338-348, March 1993.\n\n\n\n"
+    "text": "constructTanakaKasugaYamashitaYazaki Order 6 D\n\nOn the Optimization of Some Eight-stage Sixth-order Explicit Runge-Kutta Method,  by M. Tanaka, K. Kasuga, S. Yamashita and H. Yazaki,  Journal of the Information Processing Society of Japan, Vol. 34, No. 1 (1993), pages 62 to 74.\n\n\n\n"
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructEnrightVerner8",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructHuta6",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructEnrightVerner8",
+    "title": "DifferentialEquations.constructHuta6",
     "category": "Function",
-    "text": "The Relative Efficiency of Alternative Defect Control Schemes for High-Order Continuous Runge-Kutta Formulas  W. H. Enright SIAM Journal on Numerical Analysis, Vol. 30, No. 5. (Oct., 1993), pp. 1419-1445.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructSharpVerner6",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructSharpVerner6",
-    "category": "Function",
-    "text": "Sharp-Verner Order 5/6 method\n\nCompletely Imbedded Runge-Kutta Pairs, by P. W. Sharp and J. H. Verner,  SIAM Journal on Numerical Analysis, Vol. 31, No. 4. (Aug., 1994), pages. 1169 to 1190.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructTsitouras9",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructTsitouras9",
-    "category": "Function",
-    "text": "Optimized explicit Runge-Kutta pairs of order 9(8), by Ch. Tsitouras,  Applied Numerical Mathematics, 38 (2001) 123-134.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructSharpVerner7",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructSharpVerner7",
-    "category": "Function",
-    "text": "Completely Imbedded Runge-Kutta Pairs, by P.W.Sharp and J.H.Verner, Siam Journal on Numerical Analysis, Vol.31, No.4. (August 1994) pages 1169-1190.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructTanakaYamashitaStable7",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructTanakaYamashitaStable7",
-    "category": "Function",
-    "text": "On the Optimization of Some Nine-Stage Seventh-order Runge-Kutta Method, by M. Tanaka, S. Muramatsu and S. Yamashita, Information Processing Society of Japan, Vol. 33, No. 12 (1992) pages 1512-1526.\n\n\n\n"
+    "text": "Anton Hutas First Order 6 method\n\nUne amélioration de la méthode de Runge-Kutta-Nyström pour la résolution numérique des équations différentielles du premièr ordre, by Anton Huta, Acta Fac. Nat. Univ. Comenian Math., Vol. 1, pages 201-224 (1956).\n\n\n\n"
 },
 
 {
@@ -2201,11 +2033,27 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructCassity5",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructVerner6",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructCassity5",
+    "title": "DifferentialEquations.constructVerner6",
     "category": "Function",
-    "text": "Cassity's Order 5 method\n\n\n\n"
+    "text": "Verner Order 5/6 method\n\nA Contrast of a New RK56 pair with DP56, by Jim Verner,  Department of Mathematics. Simon Fraser University, Burnaby, Canada, 2006.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructDormandPrince6",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructDormandPrince6",
+    "category": "Function",
+    "text": "Dormand-Prince Order 5//6 method\n\nP.J. Prince and J. R. Dormand, High order embedded Runge-Kutta formulae, Journal of Computational and Applied Mathematics . 7 (1981), pp. 67-75.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructSharpVerner6",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructSharpVerner6",
+    "category": "Function",
+    "text": "Sharp-Verner Order 5/6 method\n\nCompletely Imbedded Runge-Kutta Pairs, by P. W. Sharp and J. H. Verner,  SIAM Journal on Numerical Analysis, Vol. 31, No. 4. (Aug., 1994), pages. 1169 to 1190.\n\n\n\n"
 },
 
 {
@@ -2225,43 +2073,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructdverk78",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructChummund6",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructdverk78",
+    "title": "DifferentialEquations.constructChummund6",
     "category": "Function",
-    "text": "Jim Verner's \"Maple\" (dverk78)\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructPapakostas6",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructPapakostas6",
-    "category": "Function",
-    "text": "Papakostas's Order 6\n\nOn Phase-Fitted modified Runge-Kutta Pairs of order 6(5), by Ch. Tsitouras and I. Th. Famelis,  International Conference of Numerical Analysis and Applied Mathematics, Crete, (2006)\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructButcher62",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructButcher62",
-    "category": "Function",
-    "text": "Butcher's Second Order 6 method\n\nOn Runge-Kutta Processes of High Order, by J. C. Butcher,  Journal of the Australian Mathematical Society, Vol. 4, (1964), pages 179 to 194\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructVernerRobust7",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructVernerRobust7",
-    "category": "Function",
-    "text": "From Verner's website\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructBaker10",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructBaker10",
-    "category": "Function",
-    "text": "Tom Baker, University of Teeside. Part of RK-Aid http://www.scm.tees.ac.uk/users/u0000251/research/researcht.htm http://www.scm.tees.ac.uk/users/u0000251/j.r.dormand/t.baker/rk10921m/rk10921m\n\n\n\n"
+    "text": "Chummund's First Order 6 method\n\nA three-dimensional family of seven-step Runge-Kutta methods of order 6, by G. M. Chammud (Hammud), Numerical Methods and programming, 2001, Vol.2, 2001, pages 159-166 (Advanced Computing Scientific journal published by the Research Computing Center of the Lomonosov Moscow State Univeristy)\n\n\n\n"
 },
 
 {
@@ -2273,11 +2089,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructTanYam7",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructPapakostas6",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructTanYam7",
+    "title": "DifferentialEquations.constructPapakostas6",
     "category": "Function",
-    "text": "On the Optimization of Some Nine-Stage Seventh-order Runge-Kutta Method, by M. Tanaka, S. Muramatsu and S. Yamashita, Information Processing Society of Japan, Vol. 33, No. 12 (1992) pages 1512-1526.\n\n\n\n"
+    "text": "Papakostas's Order 6\n\nOn Phase-Fitted modified Runge-Kutta Pairs of order 6(5), by Ch. Tsitouras and I. Th. Famelis,  International Conference of Numerical Analysis and Applied Mathematics, Crete, (2006)\n\n\n\n"
 },
 
 {
@@ -2289,83 +2105,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructRKF4",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructTsitourasPapakostas6",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructRKF4",
+    "title": "DifferentialEquations.constructTsitourasPapakostas6",
     "category": "Function",
-    "text": "Runge-Kutta-Fehberg Order 4/3\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructCurtis10",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructCurtis10",
-    "category": "Function",
-    "text": "High-order Explicit Runge-Kutta Formulae, Their uses, and Limitations, A.R.Curtis, J. Inst. Maths Applics (1975) 16, 35-55.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructClassicVerner8",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructClassicVerner8",
-    "category": "Function",
-    "text": "EXPLICIT RUNGE-KUTFA METHODS WITH ESTIMATES OF THE LOCAL TRUNCATION ERROR\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructVernerRobust9",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructVernerRobust9",
-    "category": "Function",
-    "text": "From Verner's Webiste\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructEuler",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructEuler",
-    "category": "Function",
-    "text": "constructEuler()\n\nConstructs the tableau object for Euler's method.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructFeagin14",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructFeagin14",
-    "category": "Function",
-    "text": "constructFeagin14\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructDormandPrince8_64bit",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructDormandPrince8_64bit",
-    "category": "Function",
-    "text": "constructDormandPrice8_64bit()\n\nConstructs the tableau object for the Dormand-Prince Order 6/8 method with the approximated coefficients from the paper. This works until below 64-bit precision.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructBogakiShampine3",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructBogakiShampine3",
-    "category": "Function",
-    "text": "constructBogakiShampine3()\n\nConstructs the tableau object for the Bogakai-Shampine Order 2/3 method.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructHairer10",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructHairer10",
-    "category": "Function",
-    "text": "A Runge-Kutta Method of Order 10, E. Hairer, J. Inst. Maths Applics (1978) 21, 47-59.\n\n\n\n"
-},
-
-{
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructVerner9162",
-    "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructVerner9162",
-    "category": "Function",
-    "text": "Verner 1991 Second Order 5/6 method\n\nSome Ruge-Kutta Formula Pairs, by J.H.Verner,  SIAM Journal on Numerical Analysis, Vol. 28, No. 2 (April 1991), pages 496 to 511.\n\n\n\n"
+    "text": "Tsitouras-Papakostas's Order 6\n\nCheap Error Estimation for Runge-Kutta methods, by Ch. Tsitouras and S.N. Papakostas, Siam Journal on Scientific Computing, Vol. 20, Issue 6, Nov 1999.\n\n\n\n"
 },
 
 {
@@ -2377,11 +2121,211 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructVernerEfficient6",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructVernerEfficient6",
+    "category": "Function",
+    "text": "From Verner's Website\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructMikkawyEisa",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructMikkawyEisa",
+    "category": "Function",
+    "text": "Mikkawy-Eisa Order 6\n\nA general four-parameter non-FSAL embedded Runge–Kutta algorithm of orders 6 and 4 in seven stages,  by M.E.A. El-Mikkawy and M.M.M. Eisa,  Applied Mathematics and Computation, Vol. 143, No. 2, (2003) pages 259 to 267.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructVernerEfficient7",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructVernerEfficient7",
+    "category": "Function",
+    "text": "From Verner's website\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructClassicVerner7",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructClassicVerner7",
+    "category": "Function",
+    "text": "EXPLICIT RUNGE-KUTFA METHODS WITH ESTIMATES OF THE LOCAL TRUNCATION ERROR\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructSharpVerner7",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructSharpVerner7",
+    "category": "Function",
+    "text": "Completely Imbedded Runge-Kutta Pairs, by P.W.Sharp and J.H.Verner, Siam Journal on Numerical Analysis, Vol.31, No.4. (August 1994) pages 1169-1190.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructTanakaYamashitaStable7",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructTanakaYamashitaStable7",
+    "category": "Function",
+    "text": "On the Optimization of Some Nine-Stage Seventh-order Runge-Kutta Method, by M. Tanaka, S. Muramatsu and S. Yamashita, Information Processing Society of Japan, Vol. 33, No. 12 (1992) pages 1512-1526.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructSharpSmart7",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructSharpSmart7",
+    "category": "Function",
+    "text": "Explicit Runge-Kutta Pairs with One More Derivative Evaluation than the Minimum, by P.W.Sharp and E.Smart,  Siam Journal of Scientific Computing, Vol. 14, No. 2, pages. 338-348, March 1993.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructTanakaYamashitaEfficient7",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructTanakaYamashitaEfficient7",
+    "category": "Function",
+    "text": "On the Optimization of Some Nine-Stage Seventh-order Runge-Kutta Method, by M. Tanaka, S. Muramatsu and S. Yamashita, Information Processing Society of Japan, Vol. 33, No. 12 (1992) pages 1512-1526.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructVernerRobust7",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructVernerRobust7",
+    "category": "Function",
+    "text": "From Verner's website\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructTanYam7",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructTanYam7",
+    "category": "Function",
+    "text": "On the Optimization of Some Nine-Stage Seventh-order Runge-Kutta Method, by M. Tanaka, S. Muramatsu and S. Yamashita, Information Processing Society of Japan, Vol. 33, No. 12 (1992) pages 1512-1526.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructEnrightVerner7",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructEnrightVerner7",
+    "category": "Function",
+    "text": "The Relative Efficiency of Alternative Defect Control Schemes for High-Order Continuous Runge-Kutta Formulas  W. H. Enright SIAM Journal on Numerical Analysis, Vol. 30, No. 5. (Oct., 1993), pp. 1419-1445.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructDormandPrince8",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructDormandPrince8",
+    "category": "Function",
+    "text": "constructDormandPrice8()\n\nConstructs the tableau object for the Dormand-Prince Order 6/8 method.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructRKF8",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructRKF8",
+    "category": "Function",
+    "text": "constructRKF8()\n\nConstructs the tableau object for the Runge-Kutta-Fehlberg Order 7/8 method.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructCooperVerner8",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructCooperVerner8",
+    "category": "Function",
+    "text": "Some Explicit Runge-Kutta Methods of High Order, by G. J. Cooper and J. H. Verner,  SIAM Journal on Numerical Analysis, Vol. 9, No. 3, (September 1972), pages 389 to 405\n\n\n\n"
+},
+
+{
     "location": "internals/solver_helpers.html#DifferentialEquations.constructCooperVerner82",
     "page": "Solver Helpers",
     "title": "DifferentialEquations.constructCooperVerner82",
     "category": "Function",
     "text": "Some Explicit Runge-Kutta Methods of High Order, by G. J. Cooper and J. H. Verner,  SIAM Journal on Numerical Analysis, Vol. 9, No. 3, (September 1972), pages 389 to 405\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructTsitourasPapakostas8",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructTsitourasPapakostas8",
+    "category": "Function",
+    "text": "Cheap Error Estimation for Runge-Kutta methods, by Ch. Tsitouras and S.N. Papakostas,  Siam Journal on Scientific Computing, Vol. 20, Issue 6, Nov 1999.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructEnrightVerner8",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructEnrightVerner8",
+    "category": "Function",
+    "text": "The Relative Efficiency of Alternative Defect Control Schemes for High-Order Continuous Runge-Kutta Formulas  W. H. Enright SIAM Journal on Numerical Analysis, Vol. 30, No. 5. (Oct., 1993), pp. 1419-1445.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructdverk78",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructdverk78",
+    "category": "Function",
+    "text": "Jim Verner's \"Maple\" (dverk78)\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructClassicVerner8",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructClassicVerner8",
+    "category": "Function",
+    "text": "EXPLICIT RUNGE-KUTFA METHODS WITH ESTIMATES OF THE LOCAL TRUNCATION ERROR\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructDormandPrince8_64bit",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructDormandPrince8_64bit",
+    "category": "Function",
+    "text": "constructDormandPrice8_64bit()\n\nConstructs the tableau object for the Dormand-Prince Order 6/8 method with the approximated coefficients from the paper. This works until below 64-bit precision.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructCurtis8",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructCurtis8",
+    "category": "Function",
+    "text": "An Eighth Order Runge-Kutta process with Eleven Function Evaluations per Step, by A. R. Curtis,  Numerische Mathematik, Vol. 16, No. 3 (1970), pages 268 to 277\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructTsitPap8",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructTsitPap8",
+    "category": "Function",
+    "text": "Cheap Error Estimation for Runge-Kutta methods, by Ch. Tsitouras and S.N. Papakostas,  Siam Journal on Scientific Computing, Vol. 20, Issue 6, Nov 1999.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructSharp9",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructSharp9",
+    "category": "Function",
+    "text": "Journal of Applied Mathematics & Decision Sciences, 4(2), 183-192 (2000),  \"High order explicit Runge-Kutta pairs for ephemerides of the Solar System and the Moon\".\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructTsitouras9",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructTsitouras9",
+    "category": "Function",
+    "text": "Optimized explicit Runge-Kutta pairs of order 9(8), by Ch. Tsitouras,  Applied Numerical Mathematics, 38 (2001) 123-134.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructTsitouras92",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructTsitouras92",
+    "category": "Function",
+    "text": "Optimized explicit Runge-Kutta pairs of order 9(8), by Ch. Tsitouras,  Applied Numerical Mathematics, 38 (2001) 123-134.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructVernerEfficient9",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructVernerEfficient9",
+    "category": "Function",
+    "text": "From Verner's Webiste\n\n\n\n"
 },
 
 {
@@ -2401,67 +2345,275 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructEnrightVerner7",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructVerner9162",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructEnrightVerner7",
+    "title": "DifferentialEquations.constructVerner9162",
     "category": "Function",
-    "text": "The Relative Efficiency of Alternative Defect Control Schemes for High-Order Continuous Runge-Kutta Formulas  W. H. Enright SIAM Journal on Numerical Analysis, Vol. 30, No. 5. (Oct., 1993), pp. 1419-1445.\n\n\n\n"
+    "text": "Verner 1991 Second Order 5/6 method\n\nSome Ruge-Kutta Formula Pairs, by J.H.Verner,  SIAM Journal on Numerical Analysis, Vol. 28, No. 2 (April 1991), pages 496 to 511.\n\n\n\n"
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructRK4",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructVernerRobust9",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructRK4",
+    "title": "DifferentialEquations.constructVernerRobust9",
     "category": "Function",
-    "text": "constructRK4()\n\nConstructs the tableau object for the classic RK4 method.\n\n\n\n"
+    "text": "From Verner's Webiste\n\n\n\n"
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructTsitourasPapakostas6",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructFeagin10",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructTsitourasPapakostas6",
+    "title": "DifferentialEquations.constructFeagin10",
     "category": "Function",
-    "text": "Tsitouras-Papakostas's Order 6\n\nCheap Error Estimation for Runge-Kutta methods, by Ch. Tsitouras and S.N. Papakostas, Siam Journal on Scientific Computing, Vol. 20, Issue 6, Nov 1999.\n\n\n\n"
+    "text": "constructFeagin10\n\n\n\n"
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructCurtis8",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructFeagin10Tableau",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructCurtis8",
+    "title": "DifferentialEquations.constructFeagin10Tableau",
     "category": "Function",
-    "text": "An Eighth Order Runge-Kutta process with Eleven Function Evaluations per Step, by A. R. Curtis,  Numerische Mathematik, Vol. 16, No. 3 (1970), pages 268 to 277\n\n\n\n"
+    "text": "Feagin10 in Tableau form\n\n\n\n"
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructMikkawyEisa",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructOno10",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructMikkawyEisa",
+    "title": "DifferentialEquations.constructOno10",
     "category": "Function",
-    "text": "Mikkawy-Eisa Order 6\n\nA general four-parameter non-FSAL embedded Runge–Kutta algorithm of orders 6 and 4 in seven stages,  by M.E.A. El-Mikkawy and M.M.M. Eisa,  Applied Mathematics and Computation, Vol. 143, No. 2, (2003) pages 259 to 267.\n\n\n\n"
+    "text": "Ono10\n\n\n\n"
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructVernerEfficient6",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructCurtis10",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructVernerEfficient6",
+    "title": "DifferentialEquations.constructCurtis10",
     "category": "Function",
-    "text": "From Verner's Website\n\n\n\n"
+    "text": "High-order Explicit Runge-Kutta Formulae, Their uses, and Limitations, A.R.Curtis, J. Inst. Maths Applics (1975) 16, 35-55.\n\n\n\n"
 },
 
 {
-    "location": "internals/solver_helpers.html#DifferentialEquations.constructTsitPap8",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructHairer10",
     "page": "Solver Helpers",
-    "title": "DifferentialEquations.constructTsitPap8",
+    "title": "DifferentialEquations.constructHairer10",
     "category": "Function",
-    "text": "Cheap Error Estimation for Runge-Kutta methods, by Ch. Tsitouras and S.N. Papakostas,  Siam Journal on Scientific Computing, Vol. 20, Issue 6, Nov 1999.\n\n\n\n"
+    "text": "A Runge-Kutta Method of Order 10, E. Hairer, J. Inst. Maths Applics (1978) 21, 47-59.\n\n\n\n"
 },
 
 {
-    "location": "internals/solver_helpers.html#ODE-Tableaus-1",
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructBaker10",
     "page": "Solver Helpers",
-    "title": "ODE Tableaus",
+    "title": "DifferentialEquations.constructBaker10",
+    "category": "Function",
+    "text": "Tom Baker, University of Teeside. Part of RK-Aid http://www.scm.tees.ac.uk/users/u0000251/research/researcht.htm http://www.scm.tees.ac.uk/users/u0000251/j.r.dormand/t.baker/rk10921m/rk10921m\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructFeagin12",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructFeagin12",
+    "category": "Function",
+    "text": "constructFeagin12\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructOno12",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructOno12",
+    "category": "Function",
+    "text": "On the 25 stage 12th order explicit Runge-Kutta method, by Hiroshi Ono. Transactions of the Japan Society for Industrial and applied Mathematics, Vol. 6, No. 3, (2006) pages 177 to 186\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructFeagin12Tableau",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructFeagin12Tableau",
+    "category": "Function",
+    "text": "Tableau form of Feagin12\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructFeagin14",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructFeagin14",
+    "category": "Function",
+    "text": "constructFeagin14\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructFeagin14Tableau",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructFeagin14Tableau",
+    "category": "Function",
+    "text": "Tableau form of Feagin14\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#Explicit-Tableaus-1",
+    "page": "Solver Helpers",
+    "title": "Explicit Tableaus",
     "category": "section",
-    "text": "Base.length(::DifferentialEquations.ODERKTableau)\nDifferentialEquations.stability_region\nDifferentialEquations.ExplicitRKTableau\nDifferentialEquations.ImplicitRKTableau\nDifferentialEquations.ODERKTableau\nDifferentialEquations.ODE_DEFAULT_TABLEAU\nDifferentialEquations.constructCashKarp\nDifferentialEquations.constructRalston\nDifferentialEquations.constructDormandPrince\nDifferentialEquations.constructDormandPrince8\nDifferentialEquations.constructRKF8\nDifferentialEquations.constructRKF5\nDifferentialEquations.constructKutta3\nDifferentialEquations.constructFeagin14Tableau\nDifferentialEquations.constructTanakaKasugaYamashitaYazaki6A\nDifferentialEquations.constructVernerEfficient7\nDifferentialEquations.constructTsitouras92\nDifferentialEquations.constructGL2\nDifferentialEquations.constructBS5\nDifferentialEquations.constructPapakostasPapaGeorgiou5\nDifferentialEquations.constructTsitouras5\nDifferentialEquations.constructGL4\nDifferentialEquations.constructButcher6\nDifferentialEquations.constructVernerRobust6\nDifferentialEquations.constructFeagin10\nDifferentialEquations.constructRK438Rule\nDifferentialEquations.constructLutherKonen5\nDifferentialEquations.constructHeun\nDifferentialEquations.constructFeagin10Tableau\nDifferentialEquations.constructOno10\nDifferentialEquations.constructOno12\nDifferentialEquations.constructCooperVerner8\nDifferentialEquations.constructLutherKonen53\nDifferentialEquations.constructFeagin12\nDifferentialEquations.constructClassicVerner7\nDifferentialEquations.constructHuta6\nDifferentialEquations.constructVerner6\nDifferentialEquations.constructSharp9\nDifferentialEquations.constructRungeFirst5\nDifferentialEquations.constructLawson5\nDifferentialEquations.constructPapakostasPapaGeorgiou52\nDifferentialEquations.constructButcher63\nDifferentialEquations.constructBS3\nDifferentialEquations.constructTsitourasPapakostas8\nDifferentialEquations.constructSharpSmart5\nDifferentialEquations.constructTanakaKasugaYamashitaYazaki6C\nDifferentialEquations.constructTanakaYamashitaEfficient7\nDifferentialEquations.constructGL6\nDifferentialEquations.constructTanakaKasugaYamashitaYazaki6D\nDifferentialEquations.constructChummund6\nDifferentialEquations.constructFeagin12Tableau\nDifferentialEquations.constructBogakiShampine5\nDifferentialEquations.constructVernerEfficient9\nDifferentialEquations.constructDormandPrince6\nDifferentialEquations.constructTanakaKasugaYamashitaYazaki6B\nDifferentialEquations.constructLutherKonen52\nDifferentialEquations.constructSharpSmart7\nDifferentialEquations.constructEnrightVerner8\nDifferentialEquations.constructSharpVerner6\nDifferentialEquations.constructTsitouras9\nDifferentialEquations.constructSharpVerner7\nDifferentialEquations.constructTanakaYamashitaStable7\nDifferentialEquations.constructHuta62\nDifferentialEquations.constructCassity5\nDifferentialEquations.constructVern6\nDifferentialEquations.constructClassicVerner6\nDifferentialEquations.constructdverk78\nDifferentialEquations.constructPapakostas6\nDifferentialEquations.constructButcher62\nDifferentialEquations.constructVernerRobust7\nDifferentialEquations.constructBaker10\nDifferentialEquations.constructChummund62\nDifferentialEquations.constructTanYam7\nDifferentialEquations.constructLawson6\nDifferentialEquations.constructRKF4\nDifferentialEquations.constructCurtis10\nDifferentialEquations.constructClassicVerner8\nDifferentialEquations.constructVernerRobust9\nDifferentialEquations.constructEuler\nDifferentialEquations.constructFeagin14\nDifferentialEquations.constructDormandPrince8_64bit\nDifferentialEquations.constructBogakiShampine3\nDifferentialEquations.constructHairer10\nDifferentialEquations.constructVerner9162\nDifferentialEquations.constructDormandLockyerMcCorriganPrince6\nDifferentialEquations.constructCooperVerner82\nDifferentialEquations.constructVern9\nDifferentialEquations.constructVerner916\nDifferentialEquations.constructEnrightVerner7\nDifferentialEquations.constructRK4\nDifferentialEquations.constructTsitourasPapakostas6\nDifferentialEquations.constructCurtis8\nDifferentialEquations.constructMikkawyEisa\nDifferentialEquations.constructVernerEfficient6\nDifferentialEquations.constructTsitPap8"
+    "text": "DifferentialEquations.constructEuler\nDifferentialEquations.constructRalston\nDifferentialEquations.constructHeun\nDifferentialEquations.constructKutta3\nDifferentialEquations.constructBS3\nDifferentialEquations.constructBogakiShampine3\nDifferentialEquations.constructRK4\nDifferentialEquations.constructRK438Rule\nDifferentialEquations.constructRKF4\nDifferentialEquations.constructRKF5\nDifferentialEquations.constructCashKarp\nDifferentialEquations.constructDormandPrince\nDifferentialEquations.constructBS5\nDifferentialEquations.constructPapakostasPapaGeorgiou5\nDifferentialEquations.constructPapakostasPapaGeorgiou52\nDifferentialEquations.constructTsitouras5\nDifferentialEquations.constructLutherKonen5\nDifferentialEquations.constructLutherKonen52\nDifferentialEquations.constructLutherKonen53\nDifferentialEquations.constructRungeFirst5\nDifferentialEquations.constructLawson5\nDifferentialEquations.constructSharpSmart5\nDifferentialEquations.constructBogakiShampine5\nDifferentialEquations.constructCassity5\nDifferentialEquations.constructButcher6\nDifferentialEquations.constructButcher62\nDifferentialEquations.constructButcher63\nDifferentialEquations.constructVernerRobust6\nDifferentialEquations.constructTanakaKasugaYamashitaYazaki6A\nDifferentialEquations.constructTanakaKasugaYamashitaYazaki6B\nDifferentialEquations.constructTanakaKasugaYamashitaYazaki6C\nDifferentialEquations.constructTanakaKasugaYamashitaYazaki6D\nDifferentialEquations.constructHuta6\nDifferentialEquations.constructHuta62\nDifferentialEquations.constructVerner6\nDifferentialEquations.constructDormandPrince6\nDifferentialEquations.constructSharpVerner6\nDifferentialEquations.constructVern6\nDifferentialEquations.constructClassicVerner6\nDifferentialEquations.constructChummund6\nDifferentialEquations.constructChummund62\nDifferentialEquations.constructPapakostas6\nDifferentialEquations.constructLawson6\nDifferentialEquations.constructTsitourasPapakostas6\nDifferentialEquations.constructDormandLockyerMcCorriganPrince6\nDifferentialEquations.constructVernerEfficient6\nDifferentialEquations.constructMikkawyEisa\nDifferentialEquations.constructVernerEfficient7\nDifferentialEquations.constructClassicVerner7\nDifferentialEquations.constructSharpVerner7\nDifferentialEquations.constructTanakaYamashitaStable7\nDifferentialEquations.constructSharpSmart7\nDifferentialEquations.constructTanakaYamashitaEfficient7\nDifferentialEquations.constructVernerRobust7\nDifferentialEquations.constructTanYam7\nDifferentialEquations.constructEnrightVerner7\nDifferentialEquations.constructDormandPrince8\nDifferentialEquations.constructRKF8\nDifferentialEquations.constructCooperVerner8\nDifferentialEquations.constructCooperVerner82\nDifferentialEquations.constructTsitourasPapakostas8\nDifferentialEquations.constructEnrightVerner8\nDifferentialEquations.constructdverk78\nDifferentialEquations.constructClassicVerner8\nDifferentialEquations.constructDormandPrince8_64bit\nDifferentialEquations.constructCurtis8\nDifferentialEquations.constructTsitPap8\nDifferentialEquations.constructSharp9\nDifferentialEquations.constructTsitouras9\nDifferentialEquations.constructTsitouras92\nDifferentialEquations.constructVernerEfficient9\nDifferentialEquations.constructVern9\nDifferentialEquations.constructVerner916\nDifferentialEquations.constructVerner9162\nDifferentialEquations.constructVernerRobust9\nDifferentialEquations.constructFeagin10\nDifferentialEquations.constructFeagin10Tableau\nDifferentialEquations.constructOno10\nDifferentialEquations.constructCurtis10\nDifferentialEquations.constructHairer10\nDifferentialEquations.constructBaker10\nDifferentialEquations.constructFeagin12\nDifferentialEquations.constructOno12\nDifferentialEquations.constructFeagin12Tableau\nDifferentialEquations.constructFeagin14\nDifferentialEquations.constructFeagin14Tableau"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructImplicitEuler",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructImplicitEuler",
+    "category": "Function",
+    "text": "Implicit Euler Method\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructMidpointRule",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructMidpointRule",
+    "category": "Function",
+    "text": "Order 2 Midpoint Method\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructTrapezoidalRule",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructTrapezoidalRule",
+    "category": "Function",
+    "text": "Order 2 Trapezoidal Rule (LobattoIIIA2)\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructLobattoIIIA4",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructLobattoIIIA4",
+    "category": "Function",
+    "text": "LobattoIIIA Order 4 method\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructLobattoIIIB2",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructLobattoIIIB2",
+    "category": "Function",
+    "text": "LobattoIIIB Order 2 method\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructLobattoIIIB4",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructLobattoIIIB4",
+    "category": "Function",
+    "text": "LobattoIIIB Order 4 method\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructLobattoIIIC2",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructLobattoIIIC2",
+    "category": "Function",
+    "text": "LobattoIIIC Order 2 method\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructLobattoIIIC4",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructLobattoIIIC4",
+    "category": "Function",
+    "text": "LobattoIIIC Order 4 method\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructLobattoIIICStar2",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructLobattoIIICStar2",
+    "category": "Function",
+    "text": "LobattoIIIC* Order 2 method\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructLobattoIIICStar4",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructLobattoIIICStar4",
+    "category": "Function",
+    "text": "LobattoIIIC* Order 4 method\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructLobattoIIID2",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructLobattoIIID2",
+    "category": "Function",
+    "text": "LobattoIIID Order 2 method\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructLobattoIIID4",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructLobattoIIID4",
+    "category": "Function",
+    "text": "LobattoIIID Order 4 method\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructGL2",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructGL2",
+    "category": "Function",
+    "text": "Gauss-Legendre Order 2.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructGL4",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructGL4",
+    "category": "Function",
+    "text": "Gauss-Legendre Order 4.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructGL6",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructGL6",
+    "category": "Function",
+    "text": "Gauss-Legendre Order 6.\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructRadauIA3",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructRadauIA3",
+    "category": "Function",
+    "text": "RadauIA Order 3 method\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructRadauIA5",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructRadauIA5",
+    "category": "Function",
+    "text": "RadauIA Order 5 method\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructRadauIIA3",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructRadauIIA3",
+    "category": "Function",
+    "text": "RadauIIA Order 3 method\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#DifferentialEquations.constructRadauIIA5",
+    "page": "Solver Helpers",
+    "title": "DifferentialEquations.constructRadauIIA5",
+    "category": "Function",
+    "text": "RadauIIA Order 5 method\n\n\n\n"
+},
+
+{
+    "location": "internals/solver_helpers.html#Implicit-Tableaus-1",
+    "page": "Solver Helpers",
+    "title": "Implicit Tableaus",
+    "category": "section",
+    "text": "DifferentialEquations.constructImplicitEuler\nDifferentialEquations.constructMidpointRule\nDifferentialEquations.constructTrapezoidalRule\nDifferentialEquations.constructLobattoIIIA4\nDifferentialEquations.constructLobattoIIIB2\nDifferentialEquations.constructLobattoIIIB4\nDifferentialEquations.constructLobattoIIIC2\nDifferentialEquations.constructLobattoIIIC4\nDifferentialEquations.constructLobattoIIICStar2\nDifferentialEquations.constructLobattoIIICStar4\nDifferentialEquations.constructLobattoIIID2\nDifferentialEquations.constructLobattoIIID4\nDifferentialEquations.constructGL2\nDifferentialEquations.constructGL4\nDifferentialEquations.constructGL6\nDifferentialEquations.constructRadauIA3\nDifferentialEquations.constructRadauIA5\nDifferentialEquations.constructRadauIIA3\nDifferentialEquations.constructRadauIIA5"
 },
 
 {
@@ -2693,7 +2845,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Notes on Algorithms",
     "title": "Order 5",
     "category": "section",
-    "text": "[Note that for all of these Peter Stone's modifications do not seem to be helpful since, although they lower the truncation error, they also modify the stability region in ways that can be worrisome (mostly they shrink the stability in the complex axis near the origin, making the problems not as suitable for a \"general purpose default\" like one would hope with a 4/5 solver)]The \"clear choice\" is the Dormand-Prince 4/5 pair. This is the pair which is used by default as ode45 in MATLAB, and serves similar functions in scipy, ODE.jl, etc. The golden standard implementation is Hairer's DOPRI5 (offered by ODEInterface.jl). After optimizations, DifferentialEquations.jl's native DP5 solver is much more efficient (between 4x-400x) than DOPRI5's, with various design choices factoring into this (which are documented in the benchmarks). This is pre-threading, and within method threading will likely be at least doubled or tripled when threading is enabled. Thus it's clear that the reference implementation to try other methods against is the DifferentialEquations.jl DP5 method.It's obvious that anything before Dormand-Prince 4/5's pair is simply not as good because of the optimizations on the local truncation error coefficient and the fact that FASL schemes essentially have one less function evaluation. So the previous algorithms were implemented as tableaus for the historical reasons but dealt with no further. These methods include the Runge, Cassity, Butcher, Fehlburg, Lawson, Luther and Konen, and Kutta schemes.The next set of schemes are the Papakostas-Papageorgiou schemes. The problem is that they don't really get the much lower on the error than DP5, but also have wacky stability near the origin.Tsitouras's looks to be a good match against DP5 as a 6-stage scheme to take on DP5. Its stability is similar to DP5 but its first error term is an order of magnitude smaller. More tests will likely determine that this is much better than DP5 in accordance with his paper.Lastly, there are the 7-stage schemes. The more recent one is due to Sharp and Smart, but I am ignoring this because its error term is almost an order of magnitude larger than the BS pair, and its stability reagion is wonky near the origin. Its only plus over the BS pair is that it has a slightly larger stability in the real axis, which is not important when paired with adaptive stepping and for use on non-stiff problems.That leaves us with the Bogacki-Shampine pair. This pair gets more than an order of magnitude lower truncation error, enhanced complex stability, and two error estimators to make it more robust. In fact, this is the default which is chosen in Mathematica. Its downside is that since it is an 8-stage scheme, it requires an additional function evaluation.Further tests will likely narrow this down to Tsitouras vs Bogacki-Shampine. Who will come out on top? Who knows."
+    "text": "[Note that for all of these Peter Stone's modifications do not seem to be helpful since, although they lower the truncation error, they also modify the stability region in ways that can be worrisome (mostly they shrink the stability in the complex axis near the origin, making the problems not as suitable for a \"general purpose default\" like one would hope with a 4/5 solver)]The \"clear choice\" is the Dormand-Prince 4/5 pair. This is the pair which is used by default as ode45 in MATLAB, and serves similar functions in scipy, ODE.jl, etc. The golden standard implementation is Hairer's DOPRI5 (offered by ODEInterface.jl). After optimizations, DifferentialEquations.jl's native DP5 solver is much more efficient (between 4x-400x) than DOPRI5's, with various design choices factoring into this (which are documented in the benchmarks). This is pre-threading, and within method threading will likely be at least doubled or tripled when threading is enabled. Thus it's clear that the reference implementation to try other methods against is the DifferentialEquations.jl DP5 method.It's obvious that anything before Dormand-Prince 4/5's pair is simply not as good because of the optimizations on the local truncation error coefficient and the fact that FASL schemes essentially have one less function evaluation. So the previous algorithms were implemented as tableaus for the historical reasons but dealt with no further. These methods include the Runge, Cassity, Butcher, Fehlburg, Lawson, Luther and Konen, and Kutta schemes.The next set of schemes are the Papakostas-Papageorgiou schemes. The problem is that they don't really get the much lower on the error than DP5, but also have wacky stability near the origin.Tsitouras's looks to be a good match against DP5 as a 6-stage scheme to take on DP5. Its stability is similar to DP5 but its first error term is an order of magnitude smaller. More tests will likely determine that this is much better than DP5 in accordance with his paper.Lastly, there are the 7-stage schemes. The more recent one is due to Sharp and Smart, but I am ignoring this because its error term is almost an order of magnitude larger than the BS pair, and its stability region is wonky near the origin. Its only plus over the BS pair is that it has a slightly larger stability in the real axis, which is not important when paired with adaptive stepping and for use on non-stiff problems.That leaves us with the Bogacki-Shampine pair. This pair gets more than an order of magnitude lower truncation error, enhanced complex stability, and two error estimators to make it more robust. In fact, this is the default which is chosen in Mathematica. Its downside is that since it is an 8-stage scheme, it requires an additional function evaluation.Further tests will likely narrow this down to Tsitouras vs Bogacki-Shampine. Who will come out on top? Who knows."
 },
 
 {
