@@ -1317,7 +1317,15 @@ var documenterSearchIndex = {"docs": [
     "page": "Benchmark Suite",
     "title": "Benchmark Suite",
     "category": "section",
-    "text": "DiffernetialEquations.jl provides a benchmarking suite to be able to test the difference in error, speed, and efficiency between algorithms. To see it in action, checkout the Runge-Kutta benchmarks or the Three Body Problem benchmarks.There are two parts to the benchmarking suite: shootouts and work-precision."
+    "text": "DiffernetialEquations.jl provides a benchmarking suite to be able to test the difference in error, speed, and efficiency between algorithms. DifferentialEquations.jl includes current benchmarking notebooks to help users understand the performance of the methods. These benchmarking notebooks use the included benchmarking suite. There are two parts to the benchmarking suite: shootouts and work-precision. The Shootout tests methods head-to-head for timing and error on the same problem. A WorkPrecision draws a work-precision diagram for the algorithms in question on the chosen problem."
+},
+
+{
+    "location": "man/benchmarks.html#Using-the-Benchmarking-Notebooks-1",
+    "page": "Benchmark Suite",
+    "title": "Using the Benchmarking Notebooks",
+    "category": "section",
+    "text": "To use the benchmarking notebooks, IJulia is required. The commands are as follows:using IJulia\nnotebook(dir = Pkg.dir(\"DifferentialEquations\")*\"/benchmarks\")"
 },
 
 {
