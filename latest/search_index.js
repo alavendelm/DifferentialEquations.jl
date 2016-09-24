@@ -53,7 +53,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "IJulia Notebook Tutorials",
     "category": "section",
-    "text": "If you have IJulia installed, you can access extra tutorials in the supplied IJulia notebooks via:using IJulia\ncd(Pkg.dir(\"DifferentialEquations\")*\"/examples\")\nnotebook()Otherwise, these notebooks can be viewed via the Github repository (note that Github renders them slightly incorrectly, so it will look better in IJulia!)."
+    "text": "If you have IJulia installed, you can access extra tutorials in the supplied IJulia notebooks via:using IJulia\nnotebook(dir = Pkg.dir(\"DifferentialEquations\")*\"/examples\")Otherwise, these notebooks can be viewed via the Github repository (note that Github renders them slightly incorrectly, so it will look better in IJulia!)."
 },
 
 {
