@@ -1445,7 +1445,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Conditional Dependencies",
     "title": "What Methods Require Conditional Dependencies?",
     "category": "section",
-    "text": "That's a good question! The implicit algorithms implemented in DifferentialEquations.jl require NLsolve.jl. Also, the load function for the premade meshes requires JLD.jl.Lastly, there is a special conditional dependency for Juno. If you are using Juno, then the progress bar functionality is works. If you're not using Juno, then it won't do anything.The other conditional dependencies are external solvers wrapped by DifferentialEquations.jl Currently these include:ODE.jl\nODEInterface.jl\nSundials.jl"
+    "text": "That's a good question! The implicit algorithms implemented in DifferentialEquations.jl require NLsolve.jl. Also, the load function for the premade meshes requires JLD.jl.Lastly, there is a special conditional dependency for Juno. If you are using Juno, then the progress bar functionality is works. If you're not using Juno, then it won't do anything.The other conditional dependencies are external solvers wrapped by DifferentialEquations.jl. Currently these include:ODE.jl\nODEInterface.jl\nSundials.jl"
 },
 
 {
