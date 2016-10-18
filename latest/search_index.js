@@ -13,7 +13,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "DifferentialEquations.jl Documentation",
     "category": "section",
-    "text": "DifferentialEquations.jl is a package for solving numerically solving differential equations in Julia by Chris Rackauckas. The purpose of this package is to supply efficient Julia implementations of solvers for various differential equations. Equations within the realm of this package include ordinary differential equations (ODEs), stochastic ordinary differential equations (SODEs or SDEs), stochastic partial differential equations (SPDEs), partial differential equations (with both finite difference and finite element methods), differential algebraic equations, and differential delay equations. It includes well-optimized implementations classic algorithms and ones from recent research, including algorithms optimized for high-precision and HPC applications. It integrates with the Julia package sphere, for example using Juno's progress meter, and wraps other differential equation solvers so that many different methods for solving the equations can be accessed by simply switching a keyword argument.All of the algorithms are thoroughly tested to ensure accuracy. Convergence tests are included in the test/ folder. The algorithms were also tested to show correctness with nontrivial behavior such as Turing morphogenesis. Example IJulia notebooks can be found in the examples folder. If you find any example where there seems to be an error, please open an issue.If you have any questions, or just want to chat about solvers/using the package, please feel free to message me in the Gitter channel. For bug reports, feature requests, etc., please submit an issue. If you're interested in contributing, please see the Contributor's Guide."
+    "text": "DifferentialEquations.jl is a package for solving numerically solving differential equations in Julia by Chris Rackauckas. The purpose of this package is to supply efficient Julia implementations of solvers for various differential equations. Equations within the realm of this package include ordinary differential equations (ODEs), stochastic ordinary differential equations (SODEs or SDEs), stochastic partial differential equations (SPDEs), partial differential equations (with both finite difference and finite element methods), differential algebraic equations (DAEs), and differential delay equations (DDEs). The well-optimized DifferentialEquations solvers benchmark as the fastest Julia implementations, using classic algorithms and ones from recent research, and include algorithms optimized for high-precision and HPC applications.  It integrates with the Julia package sphere, for example using Juno's progress meter, automatic plotting, built-in interpolations, and wraps other differential equation solvers so that many different methods for solving the equations can be accessed by simply switching a keyword argument. It utilizes Julia's generality to be able to solve problems specified with arbitrary number types (types with units like Unitful, and arbitrary precision numbers like BigFloats and ArbFloats), arbitrary sized arrays (ODEs on matrices), and more. This gives a powerful mixture of speed and productivity features to help you solve and analyze your differential equations faster.All of the algorithms are thoroughly tested to ensure accuracy. Convergence tests are included in the test/ folder. The algorithms were also tested to show correctness with nontrivial behavior such as Turing morphogenesis. Example IJulia notebooks can be found in the examples folder. If you find any example where there seems to be an error, please open an issue.If you have any questions, or just want to chat about solvers/using the package, please feel free to message me in the Gitter channel. For bug reports, feature requests, etc., please submit an issue. If you're interested in contributing, please see the Contributor's Guide."
 },
 
 {
@@ -29,23 +29,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Supported Equations",
     "category": "section",
-    "text": "For PDEs, one can optionally specify a noise equation. The solvers currently have stochastic variants for handling Gaussian Space-time white noise SPDEs.ODEs\nSODEs\n(Stochastic) PDEs\nLinear Poisson Equation\nSemi-linear Poisson Equation\nLinear Heat Equation\nSemi-linear Heat Equation (aka Reaction-Diffusion Equation)\nStationary Stokes Equation"
-},
-
-{
-    "location": "index.html#Implemented-Solvers-1",
-    "page": "Home",
-    "title": "Implemented Solvers",
-    "category": "section",
-    "text": "For help with choosing a solver algorithm, please see the solver options pages.For PDEs, [method] denotes an additional version for handling stochastic partial differential equations. SDE solvers and ODE solvers take in general sized inputs. For example, if u₀ is a matrix (and your problem functions are designed to work with matrices), then the solver will use the matrices without error.ODEs\nOptimized Explicit Runge-Kutta Methods\nEuler - The Order 1 Euler Method\nMidpoint - The Order 2 Midpoint Method\nRK4 - The classic Runge-Kutta Order 4 Method\nBS3 - Bogacki-Shampine 3/2\nDP5 - Dormand-Prince 5/4\nTsit5 - Tsitouras 5/4\nBS5 - Bogacki-Shampine 5/4\nVern6 - Verner's \"Most Efficient\" 6/5\nVern7 - Verner's \"Most Efficient\" 7/6\nTanYam7 - Tanaka-Yamashita 7\nDP8 - Hairer's 8/5/3 adaption of the Dormand-Prince 8 method\nVern8 - Verner's \"Most Efficient\" 8/7\nTsitPap8 - Tsitouras-Papakostas 8/7\nVern9 - Verner's \"Most Efficient\" 9/8\nFeagin10 - Feagin's Order 10/8 Method\nFeagin12 - Feagin's Order 12/10 Method\nFeagin14 - Feagin's Order 14/12 Method\nGeneral Explicit (Adaptive) Runge-Kutta Methods\nThese solvers are defined by tableaus. For a list of pre-defined tableaus, see the ODE Solver options.\nStiff Solvers. Requires NLsolve.jl. See Conditional Dependencies.\nImplicit Euler\nTrapezoidal\nRosenbrock23 (L-Stable)\nRosenbrock32 (A-Stable)\nWrappers for ODEInterface.jl. See Conditional Dependencies.\ndorpi5 - Hairer's DP5(4)\ndop853 - Hairer's DP8(5,3)\nodex - Extrapolation algorithm based on explicit midpoint rule\nradau5 - Implicit Runge-Kutta order 5\nradau - Implicit Runge-Kutta variable order 5-13\nseulex - Extrapolation based on linear implicit Euler\nWrappers for ODE.jl. See Conditional Dependencies.\node23 - Bogacki-Shampine's method\node45 - Dormand-Prince  4/5\node78 - Runge-Kutta-Fehlberg  7/8\node23s - Rosenbrock method 2/3\node1 - Forward Euler\nmidpoint - Midpoint method\node2_heun - Huen's method\node4 - RK4\node45_fe - Runge-Kutta-Fehlberg 4/5\nWrappers for Sundials.jl. See Conditional Dependences.\ncvode_BDF - The Lawrence Livermore CVODE BDF solver.\ncvode_Adams - The Lawrence Livermore CVODE BDF solver Adams-Moulton solver.SODEs\nEuler-Maruyama\nMilstein\nRossler-SRKFinite Element Solvers (Stochastic) PDEs\nSemilinear Poisson Equation\nSee implicit solvers\nSemilinear Heat Equation (Reaction-Diffusion)\nForward Euler [Maruyama]\nBackward Euler [Maruyama]\nSemi-implicit Crank-Nicholson [Maruyama]\nSemi-implicit Backward Euler [Maruyama]\nLinear Heat Equation\nForward Euler [Maruyama]\nBackward Euler [Maruyama]\nCrank-Nicholson [Maruyama]Implicit Solvers\nDirect\nFactorizations (LU, Cholesky, QR, SVD)\nConjugate-Gradient (CG)\nGMRES"
-},
-
-{
-    "location": "index.html#Roadmap-1",
-    "page": "Home",
-    "title": "Roadmap",
-    "category": "section",
-    "text": "ODE Solvers\nStabilized stiff - ROCK2 and ROCK4\nSODE Solvers\nAdaptive-SRK\nFinite difference solvers\nSemi-linear Heat Equation (Reaction-Diffusion Equation)\nSemi-linear Poisson Equation\nWave Equation\nTransport Equation\nStochastic PDE Solvers\nImplicit Integration Factor (IIF) Maruyama\nImplicit Integration Factor (IIF) Milstein\nDDE Solvers\nWrap RETARD and RADAR5\nImplement standard Runge-Kutta DDE solvers\nAlgebraic differential equations\nImplement standard solvers and add to ODEProblem type\nLinear Solvers\nFinite Difference Geometric Multigrids\nAlgebraic Multigrids via pyAMG\nPerformance\nImprove FEM performance\nTest ParallelAccelerator.jl on solvers\nAdd Xeon Phi / GPU variants\nMisc\nDavie-Gaines convergence analysis\nImprove MonteCarloSimulation"
+    "text": "For PDEs, one can optionally specify a noise equation. The solvers currently have stochastic variants for handling Gaussian Space-time white noise SPDEs.ODEs\nSODEs\nDAEs\n(Stochastic) PDEs\nLinear Poisson Equation\nSemi-linear Poisson Equation\nLinear Heat Equation\nSemi-linear Heat Equation (aka Reaction-Diffusion Equation)\nStationary Stokes EquationFor help with choosing a solver algorithm, please see the solver options pages."
 },
 
 {
@@ -61,7 +45,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Tutorials",
     "category": "section",
-    "text": "The following tutorials will introduce you to the functionality of DifferentialEquations.jl More examples can be found by checking out the IJulia notebooks in the examples folder.Pages = [\n    \"tutorials/ode_example.md\",\n    \"tutorials/sde_example.md\",\n    \"tutorials/fempoisson_example.md\",\n    \"tutorials/femheat_example.md\",\n    \"tutorials/femstochastic_example.md\"\n    ]\nDepth = 2"
+    "text": "The following tutorials will introduce you to the functionality of DifferentialEquations.jl More examples can be found by checking out the IJulia notebooks in the examples folder.Pages = [\n    \"tutorials/ode_example.md\",\n    \"tutorials/sde_example.md\",\n    \"tutorials/dae_example.md\",\n    \"tutorials/fempoisson_example.md\",\n    \"tutorials/femheat_example.md\",\n    \"tutorials/femstochastic_example.md\"\n    ]\nDepth = 2"
 },
 
 {
@@ -69,7 +53,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Solver Options",
     "category": "section",
-    "text": "These pages describe the options available in the solvers.Pages = [\n  \"solvers/ode_solve.md\",\n  \"solvers/sde_solve.md\",\n  \"solvers/fempoisson_solve.md\",\n  \"solvers/femheat_solve.md\",\n  \"solvers/fdmstokes_solve.md\"\n]\nDepth = 2"
+    "text": "These pages describe the options available in the solvers.Pages = [\n  \"solvers/ode_solve.md\",\n  \"solvers/sde_solve.md\",\n  \"solvers/dae_solve.md\",\n  \"solvers/fempoisson_solve.md\",\n  \"solvers/femheat_solve.md\",\n  \"solvers/fdmstokes_solve.md\"\n]\nDepth = 2"
 },
 
 {
@@ -86,14 +70,6 @@ var documenterSearchIndex = {"docs": [
     "title": "Internal Documentation",
     "category": "section",
     "text": "Pages = [\n  \"internals/contributors_guide.md\",\n  \"internals/fem_tools.md\",\n  \"internals/extras.md\",\n  \"internals/solver_helpers.md\",\n  \"internals/notes_on_algorithms.md\"\n]\nDepth = 2"
-},
-
-{
-    "location": "index.html#Index-1",
-    "page": "Home",
-    "title": "Index",
-    "category": "section",
-    "text": ""
 },
 
 {
@@ -149,7 +125,23 @@ var documenterSearchIndex = {"docs": [
     "page": "Stochastic Differential Equation (SDE) Example",
     "title": "Stochastic Differential Equation (SDE) Example",
     "category": "section",
-    "text": "This tutorial will introduce you to the functionality for solving SDE. Other introductions can be found by checking out the IJulia notebooks in the examples folder.In this example we will solve the equationdu = f(tu)dt + (tu)dWwhere f(tu)=u and (tu)=u. We know via Stochastic Calculus that the solution to this equation is u(tW)=uexp((-frac^22)t+W). To solve this numerically, we define a problem type by giving it the equation and the initial condition:using DifferentialEquations\nα=1\nβ=1\nu₀=1/2\nf(t,u) = α*u\nσ(t,u) = β*u\nΔt = 1//2^(4) #The initial timestepping size. It will automatically assigned if not given.\ntspan = [0,1] # The timespan. This is the default if not given.For reference, let's also give the SDEProblem the analytical solution. Note that each of the problem types allow for this, but it's always optional. This can be a good way to judge how accurate the algorithms are, or is used to test convergence of the algorithms for methods developers. Thus we define the problem object with:analytic(t,u₀,W) = u₀*exp((α-(β^2)/2)*t+β*W)\nprob = SDEProblem(f,σ,u₀,analytic=analytic)and then we pass this information to the solver and plot:#We can plot using the classic Euler-Maruyama algorithm as follows:\nsol =solve(prob::SDEProblem,tspan,Δt=Δt,alg=:EM)\nplot(sol,plot_analytic=true)(Image: SDE Solution)We can choose a higher-order solver for a more accurate result:sol =solve(prob::SDEProblem,tspan,Δt=Δt,alg=:SRIW1Optimized)\nplot(sol,plot_analytic=true)(Image: Better SDE Solution)"
+    "text": "This tutorial will introduce you to the functionality for solving SDE. Other introductions can be found by checking out the IJulia notebooks in the examples folder.In this example we will solve the equationdu = f(tu)dt + g(tu)dWwhere f(tu)=u and g(tu)=u. We know via Stochastic Calculus that the solution to this equation is u(tW)=uexp((-frac^22)t+W). To solve this numerically, we define a problem type by giving it the equation and the initial condition:using DifferentialEquations\nα=1\nβ=1\nu₀=1/2\nf(t,u) = α*u\ng(t,u) = β*u\nΔt = 1//2^(4) #The initial timestepping size. It will automatically assigned if not given.\ntspan = [0,1] # The timespan. This is the default if not given.For reference, let's also give the SDEProblem the analytical solution. Note that each of the problem types allow for this, but it's always optional. This can be a good way to judge how accurate the algorithms are, or is used to test convergence of the algorithms for methods developers. Thus we define the problem object with:analytic(t,u₀,W) = u₀*exp((α-(β^2)/2)*t+β*W)\nprob = SDEProblem(f,g,u₀,analytic=analytic)and then we pass this information to the solver and plot:#We can plot using the classic Euler-Maruyama algorithm as follows:\nsol =solve(prob::SDEProblem,tspan,Δt=Δt,alg=:EM)\nplot(sol,plot_analytic=true)(Image: SDE Solution)We can choose a higher-order solver for a more accurate result:sol =solve(prob::SDEProblem,tspan,Δt=Δt,alg=:SRIW1Optimized)\nplot(sol,plot_analytic=true)(Image: Better SDE Solution)"
+},
+
+{
+    "location": "tutorials/dae_example.html#",
+    "page": "Differential Algebraic Equation (DAE) Example",
+    "title": "Differential Algebraic Equation (DAE) Example",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "tutorials/dae_example.html#Differential-Algebraic-Equation-(DAE)-Example-1",
+    "page": "Differential Algebraic Equation (DAE) Example",
+    "title": "Differential Algebraic Equation (DAE) Example",
+    "category": "section",
+    "text": "This tutorial will introduce you to the functionality for solving DAEs. Other introductions can be found by checking out the IJulia notebooks in the examples folder.In this example we will solve the equationf(tudu) = 0where f is the a variant of the Roberts equation. This equations is actually of the formbeginalign\ndu = f(tu)  \n 0 = g(tu)\n endalignor is also known as a constrained differential equation where g is the constraint equation. The Roberts model can be written in the form:beginalign\ndy_1 = -004y + 10^4 y_2 y_3\ndy_2 = 004 y_1 - 10^4 y_2 y_3 - 3*10^7 y_2^2\n1 =  y_1  y_2 + y_3\nendalignwith initial conditions y_1(0) = 1, y_2(0) = 0, y_3(0) = 0, dy_1 = - 004, dy_2 = 004, and dy_3 = 00.The workflow for DAEs is the same as for the other types of equations, where all you need to know is how to define the problem. A DAEProblem is specified by defining an in-place update f(t,u,du,out) which uses the values to mutate out as the output. To makes this into a DAE, we move all of the variables to one side. Thus we can define the function:f = function (t,u,du,out)\n  out[1] = - 0.04u[1]              + 1e4*u[2]*u[3] - du[1]\n  out[2] = + 0.04u[1] - 3e7*u[2]^2 - 1e4*u[2]*u[3] - du[2]\n  out[3] = u[1] + u[2] + u[3] - 1.0\nendwith initial conditonsu₀ = [1.0, 0, 0]\ndu₀ = [-0.04, 0.04, 0.0]and make the DAEProblem:prob = DAEProblem(f,u₀,du₀)As with the other DifferentialEquations problems, the commands are then to solve and plot:tspan = [0;100000]\nsol = solve(prob,tspan)\nplot(sol)which, despite how interesting the model looks, produces a relatively simple output:(Image: IntroDAEPlot)"
 },
 
 {
@@ -225,7 +217,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "solvers/ode_solve.html#DifferentialEquations.solve-Tuple{DifferentialEquations.ODEProblem,AbstractArray}",
+    "location": "solvers/ode_solve.html#DifferentialEquations.solve-Tuple{DifferentialEquations.AbstractODEProblem,AbstractArray}",
     "page": "Ordinary Differential Equation Solvers",
     "title": "DifferentialEquations.solve",
     "category": "Method",
@@ -237,7 +229,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Ordinary Differential Equation Solvers",
     "title": "Ordinary Differential Equation Solvers",
     "category": "section",
-    "text": "solve(::ODEProblem,::AbstractArray)"
+    "text": "solve(::AbstractODEProblem,::AbstractArray)"
 },
 
 {
@@ -313,7 +305,23 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "solvers/sde_solve.html#DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,AbstractArray}",
+    "location": "solvers/sde_solve.html#Stochastic-Differential-Equation-Solvers-1",
+    "page": "Stochastic Differential Equation Solvers",
+    "title": "Stochastic Differential Equation Solvers",
+    "category": "section",
+    "text": ""
+},
+
+{
+    "location": "solvers/sde_solve.html#Implemented-Solvers-1",
+    "page": "Stochastic Differential Equation Solvers",
+    "title": "Implemented Solvers",
+    "category": "section",
+    "text": "In addition to the standard Euler-Maruyama method, specialized versions of higher order Runge-Kutta methods are implemented which give increased accuracy and speed.Euler-Maruyama\nMilstein\nRossler-SRK"
+},
+
+{
+    "location": "solvers/sde_solve.html#DifferentialEquations.solve-Tuple{DifferentialEquations.AbstractSDEProblem,AbstractArray}",
     "page": "Stochastic Differential Equation Solvers",
     "title": "DifferentialEquations.solve",
     "category": "Method",
@@ -321,11 +329,35 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "solvers/sde_solve.html#Stochastic-Differential-Equation-Solvers-1",
+    "location": "solvers/sde_solve.html#Solver-Documentation-1",
     "page": "Stochastic Differential Equation Solvers",
-    "title": "Stochastic Differential Equation Solvers",
+    "title": "Solver Documentation",
     "category": "section",
-    "text": "solve(::SDEProblem,::AbstractArray)"
+    "text": "solve(::AbstractSDEProblem,::AbstractArray)"
+},
+
+{
+    "location": "solvers/dae_solve.html#",
+    "page": "Differential Algebraic Equation Solvers",
+    "title": "Differential Algebraic Equation Solvers",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "solvers/dae_solve.html#DifferentialEquations.solve-Tuple{DifferentialEquations.AbstractDAEProblem,AbstractArray}",
+    "page": "Differential Algebraic Equation Solvers",
+    "title": "DifferentialEquations.solve",
+    "category": "Method",
+    "text": "solve(prob::DAEProblem,tspan)\n\nSolves the DAE as defined by prob on the time interval tspan. If not given, tspan defaults to [0,1].\n\nKeyword Arguments\n\nΔt: Sets the initial stepsize. Defaults to an automatic choice.\nsave_timeseries: Saves the result at every timeseries_steps steps. Default is true.\ntimeseries_steps: Denotes how many steps between saving a value for the timeseries. Defaults to 1.\nadaptive - Turns on adaptive timestepping for appropriate methods. Default is false.\nγ - The risk-factor γ in the q equation for adaptive timestepping. Default is 2.\nqmax - Defines the maximum value possible for the adaptive q. Default is 1.125.\nablstol - Absolute tolerance in adaptive timestepping. Defaults to 1e-3.\nreltol - Relative tolerance in adaptive timestepping. Defaults to 1e-6.\nmaxiters - Maximum number of iterations before stopping. Defaults to 1e9.\nΔtmax - Maximum Δt for adaptive timestepping. Defaults to half the timespan.\nΔtmin - Minimum Δt for adaptive timestepping. Defaults to 1e-10.\ninternalnorm - The norm for which error estimates are calculated. Default is 2.\nprogressbar - Turns on/off the Juno progressbar. Defualt is false.\nprogress_steps - Numbers of steps between updates of the progress bar. Default is 1000.\nalg: String which defines the solver algorithm. Defult is \"idasol\". Possibilities are:\nidasol: The DAE solver from Sundials\n\n\n\n"
+},
+
+{
+    "location": "solvers/dae_solve.html#Differential-Algebraic-Equation-Solvers-1",
+    "page": "Differential Algebraic Equation Solvers",
+    "title": "Differential Algebraic Equation Solvers",
+    "category": "section",
+    "text": "solve(::AbstractDAEProblem,::AbstractArray)"
 },
 
 {
@@ -337,6 +369,22 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "solvers/fempoisson_solve.html#Finite-Element-Method-Poisson-Equation-Solvers-1",
+    "page": "Finite Element Method Poisson Equation Solvers",
+    "title": "Finite Element Method Poisson Equation Solvers",
+    "category": "section",
+    "text": ""
+},
+
+{
+    "location": "solvers/fempoisson_solve.html#List-of-Methods-1",
+    "page": "Finite Element Method Poisson Equation Solvers",
+    "title": "List of Methods",
+    "category": "section",
+    "text": "Direct\nFactorizations (LU, Cholesky, QR, SVD)\nConjugate-Gradient (CG)\nGMRES"
+},
+
+{
     "location": "solvers/fempoisson_solve.html#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.PoissonProblem}",
     "page": "Finite Element Method Poisson Equation Solvers",
     "title": "DifferentialEquations.solve",
@@ -345,9 +393,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "solvers/fempoisson_solve.html#Finite-Element-Method-Poisson-Equation-Solvers-1",
+    "location": "solvers/fempoisson_solve.html#Solver-Documentation-1",
     "page": "Finite Element Method Poisson Equation Solvers",
-    "title": "Finite Element Method Poisson Equation Solvers",
+    "title": "Solver Documentation",
     "category": "section",
     "text": "solve(::FEMmesh,::PoissonProblem)"
 },
@@ -361,6 +409,22 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "solvers/femheat_solve.html#Finite-Element-Method-Heat-Equation-Solvers-1",
+    "page": "Finite Element Method Heat Equation Solvers",
+    "title": "Finite Element Method Heat Equation Solvers",
+    "category": "section",
+    "text": ""
+},
+
+{
+    "location": "solvers/femheat_solve.html#Avaliable-Methods-1",
+    "page": "Finite Element Method Heat Equation Solvers",
+    "title": "Avaliable Methods",
+    "category": "section",
+    "text": "[method] denotes an additional version for handling stochastic partial differential equations.Finite Element Solvers (Stochastic) PDEs\nSemilinear Heat Equation (Reaction-Diffusion)\nForward Euler [Maruyama]\nBackward Euler [Maruyama]\nSemi-implicit Crank-Nicholson [Maruyama]\nSemi-implicit Backward Euler [Maruyama]\nLinear Heat Equation\nForward Euler [Maruyama]\nBackward Euler [Maruyama]\nCrank-Nicholson [Maruyama]Implicit Solvers\nDirect\nFactorizations (LU, Cholesky, QR, SVD)\nConjugate-Gradient (CG)\nGMRES"
+},
+
+{
     "location": "solvers/femheat_solve.html#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.HeatProblem}",
     "page": "Finite Element Method Heat Equation Solvers",
     "title": "DifferentialEquations.solve",
@@ -369,9 +433,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "solvers/femheat_solve.html#Finite-Element-Method-Heat-Equation-Solvers-1",
+    "location": "solvers/femheat_solve.html#Solver-Documentation-1",
     "page": "Finite Element Method Heat Equation Solvers",
-    "title": "Finite Element Method Heat Equation Solvers",
+    "title": "Solver Documentation",
     "category": "section",
     "text": "solve(::FEMmesh,::HeatProblem)"
 },
@@ -453,7 +517,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining an ODE Problem",
     "title": "DifferentialEquations.ODEProblem",
     "category": "Type",
-    "text": "ODEProblem\n\nWraps the data which defines an SDE problem\n\nfracdudt = f(tu)\n\nwith initial condition u.\n\nConstructors\n\nODEProblem(f,u₀;analytic=nothing) : Defines the SDE with the specified functions and defines the solution if analytic is given.\n\nFields\n\nf: The drift function in the ODE.\nu₀: The initial condition.\nanalytic: A function which describes the solution.\nknownanalytic: True if the solution is given.\nnumvars: The number of variables in the system\n\n\n\n"
+    "text": "ODEProblem\n\nWraps the data which defines an ODE problem\n\nfracdudt = f(tu)\n\nwith initial condition u.\n\nConstructors\n\nODEProblem(f,u₀;analytic=nothing) : Defines the ODE with the specified functions and defines the solution if analytic is given.\n\nFields\n\nf: The drift function in the ODE.\nu₀: The initial condition.\nanalytic: A function which describes the solution.\nknownanalytic: True if the solution is given.\nnumvars: The number of variables in the system\n\n\n\n"
 },
 
 {
@@ -565,7 +629,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining an ODE Problem",
     "title": "DifferentialEquations.prob_ode_rigidbody",
     "category": "Constant",
-    "text": "Rigid Body Equations\n\nbeginalign\nfracdydt  = Iyy \nfracdydt  = Iyy \nfracdydt  = Iyy\nendalign\n\nwith I=-2, I=125, and I=-12.\n\nThe initial condition is y=100009.\n\nFrom Solving Differential Equations in R by Karline Soetaert\n\nor Hairer Norsett Wanner Solving Ordinary Differential Euations I - Nonstiff Problems Page 244\n\nUsually solved from 0 to 20. Periodic at 10 and 20.\n\n\n\n"
+    "text": "Rigid Body Equations\n\nbeginalign\nfracdydt  = Iyy \nfracdydt  = Iyy \nfracdydt  = Iyy\nendalign\n\nwith I=-2, I=125, and I=-12.\n\nThe initial condition is y=100009.\n\nFrom Solving Differential Equations in R by Karline Soetaert\n\nor Hairer Norsett Wanner Solving Ordinary Differential Euations I - Nonstiff Problems Page 244\n\nUsually solved from 0 to 20.\n\n\n\n"
 },
 
 {
@@ -589,7 +653,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a SDE Problem",
     "title": "Defining a SDE Problem",
     "category": "section",
-    "text": "To define an SDE Problem, you simply need to give the forcing function f, the noise function σ, and the initial condition u which define an SDEdu = f(tu)dt + (tu)dWf and σ should be specified as f(t,u) and  σ(t,u) respectively, and u₀ should be an AbstractArray whose geometry matches the desired geometry of u. Note that we are not limited to numbers or vectors for u₀, one is allowed to provide u₀ as arbitrary matrices / higher dimension tensors as well. A vector of σs can also be defined to determine an SDE of higher Ito dimension."
+    "text": "To define an SDE Problem, you simply need to give the forcing function f, the noise function g, and the initial condition u which define an SDEdu = f(tu)dt + g(tu)dWf and g should be specified as f(t,u) and  g(t,u) respectively, and u₀ should be an AbstractArray whose geometry matches the desired geometry of u. Note that we are not limited to numbers or vectors for u₀, one is allowed to provide u₀ as arbitrary matrices / higher dimension tensors as well. A vector of gs can also be defined to determine an SDE of higher Ito dimension."
 },
 
 {
@@ -597,7 +661,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a SDE Problem",
     "title": "DifferentialEquations.SDEProblem",
     "category": "Type",
-    "text": "SDEProblem\n\nWraps the data which defines an SDE problem\n\nu = f(ut)dt + (ut)dW\n\nwith initial condition u.\n\nConstructors\n\nSDEProblem(f,σ,u₀;analytic=nothing) : Defines the SDE with the specified functions and defines the solution if analytic is given.\n\nFields\n\nf: The drift function in the SDE.\nσ: The noise function in the SDE.\nu₀: The initial condition.\nanalytic: A function which describes the solution.\nknownanalytic: True if the solution is given.\nnumvars: The number of variables in the system\nsizeu: The size of the initial condition (and thus u)\n\n\n\n"
+    "text": "SDEProblem\n\nWraps the data which defines an SDE problem\n\nu = f(ut)dt + g(ut)dW\n\nwith initial condition u.\n\nConstructors\n\nSDEProblem(f,g,u₀;analytic=nothing) : Defines the SDE with the specified functions and defines the solution if analytic is given.\n\nFields\n\nf: The drift function in the SDE.\ng: The noise function in the SDE.\nu₀: The initial condition.\nanalytic: A function which describes the solution.\nknownanalytic: True if the solution is given.\nnumvars: The number of variables in the system\nsizeu: The size of the initial condition (and thus u)\nnoise: The noise process applied to the noise upon generation.\n\n\n\n"
 },
 
 {
@@ -901,7 +965,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Defining a Stokes Problem",
     "title": "DifferentialEquations.prob_stokes_dirichletzero",
     "category": "Constant",
-    "text": "Example problme for solving the trivial stationary Stokes equation.\n\n\n\n"
+    "text": "Example problem for solving the trivial stationary Stokes equation.\n\n\n\n"
 },
 
 {
@@ -1133,7 +1197,7 @@ var documenterSearchIndex = {"docs": [
     "page": "The Solution Type",
     "title": "DifferentialEquations.FEMSolution",
     "category": "Type",
-    "text": "FEMSolution\n\nHolds the data for the solution to a finite element problem.\n\nFields\n\nfem_mesh::FEMmesh: The finite element mesh the problem was solved on.\nu::Array{Float64}: The solution (at the final timepoint)\ntrueknown::Bool: Boolean flag for if the true solution is given.\nu_analytic::AbstractArrayOrVoid: The true solution at the final timepoint.\nerrors: A dictionary of the error calculations.\nappxTrue::Bool: Boolean flag for if u_analytic was an approximation.\ntimeseries::AbstractArrayOrVoid: u over time. Only saved ifsave_timeseries=true` is specified in the solver.\nt::AbstractArrayOrVoid: All the t's in the solution. Only saved if save_timeseries=true is specified in the solver.\nprob::DEProblem: Holds the problem object used to define the problem.\nsave_timeseries::Bool: True if solver saved the extra timepoints.\n\n\n\n"
+    "text": "FEMSolution\n\nHolds the data for the solution to a finite element problem.\n\nFields\n\nfem_mesh::FEMmesh: The finite element mesh the problem was solved on.\nu::Array{Float64}: The solution (at the final timepoint)\ntrueknown::Bool: Boolean flag for if the true solution is given.\nu_analytic::AbstractArrayOrVoid: The true solution at the final timepoint.\nerrors: A dictionary of the error calculations.\nappxtrue::Bool: Boolean flag for if u_analytic was an approximation.\ntimeseries::AbstractArrayOrVoid: u over time. Only saved ifsave_timeseries=true` is specified in the solver.\nt::AbstractArrayOrVoid: All the t's in the solution. Only saved if save_timeseries=true is specified in the solver.\nprob::DEProblem: Holds the problem object used to define the problem.\nsave_timeseries::Bool: True if solver saved the extra timepoints.\n\n\n\n"
 },
 
 {
@@ -1149,7 +1213,7 @@ var documenterSearchIndex = {"docs": [
     "page": "The Solution Type",
     "title": "DifferentialEquations.SDESolution",
     "category": "Type",
-    "text": "SDESolution\n\nHolds the data for the solution to a SDE problem.\n\nFields\n\nu::Array{Float64}: The solution (at the final timepoint)\ntrueknown::Bool: Boolean flag for if the true solution is given.\nu_analytic::AbstractArrayOrVoid: The true solution at the final timepoint.\nerrors: A dictionary of the error calculations.\ntimeseries::AbstractArrayOrVoid: u over time. Only saved ifsave_timeseries=true` is specified in the solver.\nt::AbstractArrayOrVoid: All the t's in the solution. Only saved if save_timeseries=true is specified in the solver.\nWs: All of the W's in the solution. Only saved if save_timeseries=true is specified in the solver.\ntimeseries_analytic: If save_timeseries=true, saves the solution at each save point.\nprob::DEProblem: Holds the problem object used to define the problem.\nsave_timeseries::Bool: True if solver saved the extra timepoints.\nappxTrue::Bool: Boolean flag for if u_analytic was an approximation.\n\n\n\n"
+    "text": "SDESolution\n\nHolds the data for the solution to a SDE problem.\n\nFields\n\nu::Array{Float64}: The solution (at the final timepoint)\ntrueknown::Bool: Boolean flag for if the true solution is given.\nu_analytic::AbstractArrayOrVoid: The true solution at the final timepoint.\nerrors: A dictionary of the error calculations.\ntimeseries::AbstractArrayOrVoid: u over time. Only saved ifsave_timeseries=true` is specified in the solver.\nt::AbstractArrayOrVoid: All the t's in the solution. Only saved if save_timeseries=true is specified in the solver.\nWs: All of the W's in the solution. Only saved if save_timeseries=true is specified in the solver.\ntimeseries_analytic: If save_timeseries=true, saves the solution at each save point.\nprob::DEProblem: Holds the problem object used to define the problem.\nsave_timeseries::Bool: True if solver saved the extra timepoints.\nappxtrue::Bool: Boolean flag for if u_analytic was an approximation.\n\n\n\n"
 },
 
 {
@@ -1157,7 +1221,7 @@ var documenterSearchIndex = {"docs": [
     "page": "The Solution Type",
     "title": "DifferentialEquations.ODESolution",
     "category": "Type",
-    "text": "ODESolution\n\nHolds the data for the solution to an ODE problem.\n\nFields\n\nu::Array{Float64}: The solution (at the final timepoint)\ntrueknown::Bool: Boolean flag for if the true solution is given.\nu_analytic::AbstractArrayOrVoid: The true solution at the final timepoint.\nerrors: A dictionary of the error calculations.\ntimeseries::AbstractArrayOrVoid: u over time. Only saved ifsave_timeseries=true` is specified in the solver.\nt::AbstractArrayOrVoid: All the t's in the solution. Only saved if save_timeseries=true is specified in the solver.\ntimeseries_analytic: If save_timeseries=true, saves the solution at each timestep.\nprob::DEProblem: Holds the problem object used to define the problem.\nsave_timeseries::Bool: True if solver saved the extra timepoints.\nappxTrue::Bool: Boolean flag for if u_analytic was an approximation.\n\n\n\n"
+    "text": "ODESolution\n\nHolds the data for the solution to an ODE problem.\n\nFields\n\nu::Array{Float64}: The solution (at the final timepoint)\ntrueknown::Bool: Boolean flag for if the true solution is given.\nu_analytic::AbstractArrayOrVoid: The true solution at the final timepoint.\nerrors: A dictionary of the error calculations.\ntimeseries::AbstractArrayOrVoid: u over time. Only saved ifsave_timeseries=true` is specified in the solver.\nt::AbstractArrayOrVoid: All the t's in the solution. Only saved if save_timeseries=true is specified in the solver.\ntimeseries_analytic: If save_timeseries=true, saves the solution at each timestep.\nprob::DEProblem: Holds the problem object used to define the problem.\nsave_timeseries::Bool: True if solver saved the extra timepoints.\nappxtrue::Bool: Boolean flag for if u_analytic was an approximation.\n\n\n\n"
 },
 
 {
@@ -1177,11 +1241,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "man/solution.html#DifferentialEquations.appxTrue!",
+    "location": "man/solution.html#DifferentialEquations.appxtrue!",
     "page": "The Solution Type",
-    "title": "DifferentialEquations.appxTrue!",
+    "title": "DifferentialEquations.appxtrue!",
     "category": "Function",
-    "text": "appxTrue!(res,res2)\n\nAdds the solution from res2 to the FEMSolution object res. Useful to add a quasi-true solution when none is known by computing once at a very small time/space step and taking that solution as the \"true\" solution\n\n\n\n"
+    "text": "appxtrue!(sol::AbstractODESolution,sol2::TestSolution)\n\nUses the interpolant from the higher order solution sol2 to approximate errors for sol. If sol2 has no interpolant, only the final error is calculated.\n\n\n\nappxtrue!(sol::FEMSolution,sol2::FEMSolution)\n\nAdds the solution from sol2 to the FEMSolution object sol. Useful to add a quasi-true solution when none is known by computing once at a very small time/space step and taking that solution as the \"true\" solution\n\n\n\nappxtrue!(sol::AbstractODESolution,sol2::AbstractODESolution)\n\nUses the interpolant from the higher order solution sol2 to approximate errors for sol. If sol2 has no interpolant, only the final error is calculated.\n\n\n\n"
 },
 
 {
@@ -1197,7 +1261,7 @@ var documenterSearchIndex = {"docs": [
     "page": "The Solution Type",
     "title": "Related Functions",
     "category": "section",
-    "text": "DifferentialEquations.appxTrue!\nDifferentialEquations.FEMSolutionTS"
+    "text": "DifferentialEquations.appxtrue!\nDifferentialEquations.FEMSolutionTS"
 },
 
 {
@@ -1237,7 +1301,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Output Specification",
     "title": "Choosing Intermediate Locations for the Solution",
     "category": "section",
-    "text": "If dense solving is too high of a memory cost, one can specify values to be interpolated during the solving via the array saveat. For example, if we are solving on the interval tspan=[0,1], we can set saveat=[0.5] and the solver will ensure that an approximate value will be given at t=0.5. If this value is reached by the solver, it will be ignored. If the solver skips over this point, then an interpolated value is computed and saved for this point. This only requires saving the derivatives at two timesteps, and thus has a drastically reduced memory footprint than full dense output. Note that this, being associated with dense output, is only available for the ODE solvers.Another way to specify an output location is to add that value to tspan. For example, we can force the solver to solve at 0.5 via tspan=[0,0.5,1]. However, notice that this will require that the solver actually hits t=0.5. In some cases this can slow down the solver by lowering the Δt leading to extra steps. In some cases, this may be advantagous. For example, if you know that there is a large discontinuity at t=0.5, using tspan=[0,0.5,1] will force the solver to first solve on [0,0.5], and then continue to solve on [0.5,1]. This will give a much better approximation by perfectly specifying the moment of discontinuity, and can help the solver through tough regions."
+    "text": "If dense solving is too high of a memory cost, one can specify values to be interpolated during the solving via the array saveat. For example, if we are solving on the interval tspan=[0,1], we can set saveat=[0.5] and the solver will ensure that an approximate value will be given at t=0.5. If this value is reached by the solver, it will be ignored. If the solver skips over this point, then an interpolated value is computed and saved for this point. This only requires saving the derivatives at two timesteps, and thus has a drastically reduced memory footprint than full dense output. Note that this, being associated with dense output, is only available for the ODE solvers.One fact to note is that saveat can be used even when save_timeseries=false. If this is done, then the only values that will be saved are the values chosen in saveat (matching Sundial's default behavior).Another way to specify an output location is to add that value to tspan. For example, we can force the solver to solve at 0.5 via tspan=[0,0.5,1]. However, notice that this will require that the solver actually hits t=0.5. In some cases this can slow down the solver by lowering the Δt leading to extra steps. In some cases, this may be advantagous. For example, if you know that there is a large discontinuity at t=0.5, using tspan=[0,0.5,1] will force the solver to first solve on [0,0.5], and then continue to solve on [0.5,1]. This will give a much better approximation by perfectly specifying the moment of discontinuity, and can help the solver through tough regions."
 },
 
 {
@@ -1437,7 +1501,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Convergence Simulations",
     "title": "DifferentialEquations.ConvergenceSimulation",
     "category": "Type",
-    "text": "ConvergenceSimulation\n\nA type which holds the data from a convergence simulation.\n\nFields\n\nsolutions::Array{DESolution}: Holds all the PdeSolutions.\nerrors: Dictionary of the error calculations. Can contain:\nh1Errors: Vector of the H1 errors.\nl2Errors: Vector of the L2 errors.\nmaxErrors: Vector of the nodal maximum errors.\nnode2Errors: Vector of the nodal l2 errors.\nN: The number of simulations.\nauxdata: Auxillary data of the convergence simluation. Entries can include:\nΔts: The Δt's in the simulations.\nΔxs: The Δx's in the simulations.\nμs: The CFL μ's in the simulations.\nνs: The CFL ν's in the simulations.\n𝒪est: Dictionary of order estimates. Can contain:\nConvEst_h1: The H1 error order of convergence estimate for the convergence simulation.  Generated via log2(error[i+1]/error[i]). Thus only valid if generated by halving/doubling  the Δt/Δx. If alternate scaling, modify by dividing of log(base,ConvEst_h1)\nConvEst_l2: The L2 error order of convergence estimate for the convergence simulation.  Generated via log2(error[i+1]/error[i]). Thus only valid if generated by halving/doubling  the Δt/Δx. If alternate scaling, modify by dividing of log(base,ConvEst_l2)\nConvEst_max: The nodal maximum error order of convergence estimate for the convergence simulation.  Generated via log2(error[i+1]/error[i]). Thus only valid if generated by halving/doubling  the Δt/Δx. If alternate scaling, modify by dividing of log(base,ConvEst_max)\nConvEst_node2: The nodal l2 error order of convergence estimate for the convergence simulation.  Generated via log2(error[i+1]/error[i]). Thus only valid if generated by halving/doubling  the Δt/Δx. If alternate scaling, modify by dividing of log(base,ConvEst_node2)\nconvergence_axis: The axis along which convergence is calculated. For example, if  we calculate the Δt convergence, convergence_axis is the Δts used in the calculation.\n\n\n\n"
+    "text": "ConvergenceSimulation\n\nA type which holds the data from a convergence simulation.\n\nFields\n\nsolutions::Array{<:DESolution}: Holds all the PdeSolutions.\nerrors: Dictionary of the error calculations. Can contain:\nh1Errors: Vector of the H1 errors.\nl2Errors: Vector of the L2 errors.\nmaxErrors: Vector of the nodal maximum errors.\nnode2Errors: Vector of the nodal l2 errors.\nN: The number of simulations.\nauxdata: Auxillary data of the convergence simluation. Entries can include:\nΔts: The Δt's in the simulations.\nΔxs: The Δx's in the simulations.\nμs: The CFL μ's in the simulations.\nνs: The CFL ν's in the simulations.\n𝒪est: Dictionary of order estimates. Can contain:\nConvEst_h1: The H1 error order of convergence estimate for the convergence simulation.  Generated via log2(error[i+1]/error[i]). Thus only valid if generated by halving/doubling  the Δt/Δx. If alternate scaling, modify by dividing of log(base,ConvEst_h1)\nConvEst_l2: The L2 error order of convergence estimate for the convergence simulation.  Generated via log2(error[i+1]/error[i]). Thus only valid if generated by halving/doubling  the Δt/Δx. If alternate scaling, modify by dividing of log(base,ConvEst_l2)\nConvEst_max: The nodal maximum error order of convergence estimate for the convergence simulation.  Generated via log2(error[i+1]/error[i]). Thus only valid if generated by halving/doubling  the Δt/Δx. If alternate scaling, modify by dividing of log(base,ConvEst_max)\nConvEst_node2: The nodal l2 error order of convergence estimate for the convergence simulation.  Generated via log2(error[i+1]/error[i]). Thus only valid if generated by halving/doubling  the Δt/Δx. If alternate scaling, modify by dividing of log(base,ConvEst_node2)\nconvergence_axis: The axis along which convergence is calculated. For example, if  we calculate the Δt convergence, convergence_axis is the Δts used in the calculation.\n\n\n\n"
 },
 
 {
@@ -1534,14 +1598,6 @@ var documenterSearchIndex = {"docs": [
     "title": "ODE.jl.",
     "category": "section",
     "text": "The wrapper currently only works on the development branch of ODE.jl at JuliaODE/ODE.jl. To install this version of ODE.jl, use the following commands:Pkg.clone(\"https://github.com/JuliaODE/ODE.jl\")"
-},
-
-{
-    "location": "man/conditional_dependencies.html#Sundials.jl-1",
-    "page": "Conditional Dependencies",
-    "title": "Sundials.jl",
-    "category": "section",
-    "text": "The wrapper works on the master branch. You can install this via:Pkg.clone(\"https://github.com/JuliaDiffEq/Sundials.jl\")\nPkg.checkout(\"Sundials\")"
 },
 
 {
@@ -1773,7 +1829,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Extra Functions",
     "title": "DifferentialEquations.DEProblem",
     "category": "Type",
-    "text": "PdeProblem: Defines differential equation problems via its internal functions\n\n\n\n"
+    "text": "DEProblem: Defines differential equation problems via its internal functions\n\n\n\n"
 },
 
 {
@@ -2749,7 +2805,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Solver Helpers",
     "title": "DifferentialEquations.monteCarloSim",
     "category": "Function",
-    "text": "monteCarloSim(Δt::Number,prob::SDEProblem)\n\nPerforms a parallel Monte-Carlo simulation to solve the SDE problem with Δt numMonte times. Returns a vector of solution objects.\n\nKeyword Arguments\n\nT - Final time. Default is 1.\nnumMonte - Number of Monte-Carlo simulations to run. Default is 10000\nsave_timeseries - Denotes whether save_timeseries should be turned on in each run. Default is true.\nalg - Algorithm for solving the SDEs. Default is \"EM\"\n\n\n\n"
+    "text": "monteCarloSim(Δt::Number,prob::SDEProblem)\n\nPerforms a parallel Monte-Carlo simulation to solve the SDE problem with Δt numMonte times. Returns a vector of solution objects.\n\nKeyword Arguments\n\nT - Final time. Default is 1.\nnumMonte - Number of Monte-Carlo simulations to run. Default is 10000\nsave_timeseries - Denotes whether save_timeseries should be turned on in each run. Default is false.\n\n\n\n"
 },
 
 {
